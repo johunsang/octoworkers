@@ -1,0 +1,226 @@
+:root {
+  font-family: "Sora", "IBM Plex Sans KR", sans-serif;
+  color: #102130;
+  background:
+    linear-gradient(160deg, rgba(255, 237, 196, 0.8), rgba(245, 250, 255, 0.9)),
+    radial-gradient(circle at top right, rgba(0, 171, 179, 0.16), transparent 20%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  padding: 32px 24px;
+  color: white;
+  background:
+    radial-gradient(circle at top, rgba(255, 159, 67, 0.22), transparent 30%),
+    linear-gradient(180deg, #0d1d2b 0%, #12283b 100%);
+}
+
+.admin-sidebar span,
+.panel > span {
+  display: inline-flex;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-sidebar span {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.admin-sidebar h1 {
+  margin: 18px 0 14px;
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
+.admin-content {
+  padding: 24px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.panel {
+  padding: 24px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(16, 33, 48, 0.08);
+  box-shadow: 0 22px 50px rgba(20, 35, 43, 0.08);
+}
+
+.panel > span {
+  background: rgba(16, 33, 48, 0.07);
+  color: #235f69;
+}
+
+.panel h2 {
+  margin: 16px 0 18px;
+}
+
+.stats-grid,
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stats-grid article,
+.list-row,
+.suggestion-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(249, 251, 253, 0.98);
+}
+
+.stats-grid span,
+.list-row p,
+.suggestion-card small {
+  color: rgba(16, 33, 48, 0.68);
+}
+
+.stats-grid strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.9rem;
+}
+
+.form-grid input,
+.form-grid textarea {
+  width: 100%;
+  border: 1px solid rgba(16, 33, 48, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: white;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.button-row button,
+.form-grid button,
+.list-row button {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: #102130;
+  color: white;
+}
+
+.secondary-button {
+  background: #dfe8ee !important;
+  color: #102130 !important;
+}
+
+.table-shell,
+.media-list {
+  display: grid;
+  gap: 10px;
+}
+
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suggestion-card {
+  margin-top: 14px;
+}
+
+.media-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(249, 251, 253, 0.98);
+}
+
+.media-card-copy {
+  margin-bottom: 12px;
+}
+
+.sidebar-footer {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.login-shell,
+.admin-loading {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.login-card {
+  width: min(520px, calc(100% - 32px));
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 22px 50px rgba(20, 35, 43, 0.12);
+}
+
+.login-card span {
+  display: inline-flex;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(16, 33, 48, 0.07);
+  color: #235f69;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.login-error {
+  color: #a52d2d;
+}
+
+@media (max-width: 980px) {
+  .admin-shell,
+  .admin-grid,
+  .stats-grid,
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+}

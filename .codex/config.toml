@@ -1,0 +1,16 @@
+# 옥토워커스 — Codex project configuration
+
+model = "o4-mini"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+writable_roots = ["."]
+network_access = false
+
+[features]
+web_search = "cached"
+
+[shell_environment_policy]
+inherit = "core"
+exclude = ["CLOUDFLARE_API_TOKEN", "ADMIN_JWT_SECRET", "ADMIN_LOGIN_PASSWORD", "AI_PROVIDER_API_KEY", "CLOUDFLARE_IMAGES_API_TOKEN"]

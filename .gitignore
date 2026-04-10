@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+dist
+coverage
+.wrangler
+.wrangler-dry
+.wrangler-dry-staging
+.env
+.env.local
+.env.*.local
+worker/.dev.vars
+worker/public
+
+# Claude Code local files
+CLAUDE.local.md
+.claude/settings.local.json

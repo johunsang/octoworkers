@@ -1,0 +1,229 @@
+:root {
+  font-family: "Space Grotesk", "IBM Plex Sans KR", sans-serif;
+  color: #e8edf2;
+  background:
+    radial-gradient(circle at top left, rgba(255, 178, 89, 0.22), transparent 30%),
+    radial-gradient(circle at top right, rgba(102, 197, 255, 0.24), transparent 24%),
+    linear-gradient(180deg, #08131c 0%, #091722 48%, #0e2025 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.landing-shell {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 72px;
+}
+
+.hero-panel,
+.content-section,
+.lead-capture {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 17, 26, 0.82);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 28px;
+  padding: 42px;
+}
+
+.hero-copy span,
+.section-copy span {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #9fd8ff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.hero-copy h1,
+.section-copy h2 {
+  margin: 20px 0 16px;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.hero-copy h1 {
+  font-size: clamp(3rem, 8vw, 5.7rem);
+}
+
+.section-copy h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.hero-copy p,
+.section-copy p,
+.feature-grid p,
+.ops-rail p,
+.lead-form .form-status {
+  color: rgba(232, 237, 242, 0.76);
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.hero-actions a,
+.lead-form button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.hero-actions a:first-child,
+.lead-form button {
+  background: linear-gradient(135deg, #ffb259 0%, #ff6d3f 100%);
+  color: #1e1203;
+  font-weight: 700;
+}
+
+.hero-actions a:last-child {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.hero-actions a:hover,
+.lead-form button:hover {
+  transform: translateY(-1px);
+}
+
+.hero-metrics {
+  padding: 24px;
+  border-radius: 24px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(27, 52, 67, 0.86), rgba(11, 28, 36, 0.86));
+}
+
+.hero-metrics header p {
+  margin: 8px 0 0;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.metric-grid article,
+.feature-grid article,
+.ops-rail article {
+  border-radius: 20px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.metric-grid span {
+  color: rgba(232, 237, 242, 0.62);
+  font-size: 13px;
+}
+
+.metric-grid strong {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+.content-section,
+.lead-capture {
+  margin-top: 22px;
+  padding: 34px;
+}
+
+.feature-grid,
+.ops-rail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.feature-grid h3,
+.ops-rail h3 {
+  margin: 0 0 10px;
+}
+
+.lead-capture {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.lead-form {
+  display: grid;
+  gap: 12px;
+}
+
+.lead-form input,
+.lead-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 14px 16px;
+  color: #f5f7fb;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lead-form textarea {
+  resize: vertical;
+}
+
+@media (max-width: 920px) {
+  .hero-panel,
+  .lead-capture,
+  .feature-grid,
+  .ops-rail,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel,
+  .content-section,
+  .lead-capture {
+    padding: 24px;
+  }
+}

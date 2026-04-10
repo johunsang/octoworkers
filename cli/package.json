@@ -1,0 +1,20 @@
+{
+  "name": "create-octoworkers",
+  "version": "0.1.0",
+  "description": "Scaffold a new SaaS project from the 옥토워커스 boilerplate",
+  "type": "module",
+  "bin": {
+    "create-octoworkers": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node dist/index.js"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

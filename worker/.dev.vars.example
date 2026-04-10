@@ -1,0 +1,7 @@
+CLOUDFLARE_IMAGES_API_TOKEN=replace-me
+# Optional when using AI Gateway compatibility mode instead of the direct AI binding.
+AI_PROVIDER_API_KEY=replace-me
+ADMIN_LOGIN_PASSWORD=replace-me
+ADMIN_JWT_SECRET=replace-me-with-a-long-random-secret
+# Email (Resend)
+RESEND_API_KEY=replace-me

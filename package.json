@@ -1,0 +1,18 @@
+{
+  "name": "octoworkers",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "pnpm --parallel --stream --filter @octoworkers/worker --filter @octoworkers/landing --filter @octoworkers/admin dev",
+    "dev:remote": "pnpm --parallel --stream --filter @octoworkers/worker dev:remote --filter @octoworkers/landing dev --filter @octoworkers/admin dev",
+    "dev:apps": "pnpm --parallel --stream --filter @octoworkers/landing --filter @octoworkers/admin dev",
+    "dev:worker": "pnpm --filter @octoworkers/worker dev",
+    "build": "pnpm build:landing && pnpm build:admin",
+    "build:landing": "pnpm --filter @octoworkers/landing build:cloudflare",
+    "build:admin": "pnpm --filter @octoworkers/admin build:cloudflare",
+    "check": "pnpm --recursive run check",
+    "test": "pnpm --filter @octoworkers/worker test",
+    "deploy:staging": "pnpm build && pnpm --filter @octoworkers/worker db:migrate:remote:staging && pnpm --filter @octoworkers/worker deploy:staging",
+    "deploy:prod": "pnpm build && pnpm --filter @octoworkers/worker db:migrate:remote && pnpm --filter @octoworkers/worker deploy"
+  }
+}

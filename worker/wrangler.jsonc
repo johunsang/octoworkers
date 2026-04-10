@@ -1,0 +1,156 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "octoworkers",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "ai": {
+    "binding": "AI",
+    "remote": true
+  },
+  "kv_namespaces": [
+    {
+      "binding": "APP_KV"
+    }
+  ],
+  "vectorize": [
+    {
+      "binding": "DOC_INDEX",
+      "index_name": "octoworkers-doc-index",
+      "remote": true
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "OpsAgent",
+        "class_name": "OpsAgent"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["OpsAgent"]
+    }
+  ],
+  // Uncomment and set your actual bucket name to enable the R2 example.
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MEDIA_R2",
+  //     "bucket_name": "octoworkers-media"
+  //   }
+  // ],
+  "vars": {
+    "ENV_NAME": "production",
+    "APP_DOMAIN": "example.com",
+    "ADMIN_DOMAIN": "admin.example.com",
+    "ADMIN_ACCESS_MODE": "hybrid",
+    "ADMIN_ALLOWED_EMAILS": "founder@example.com",
+    "ADMIN_LOGIN_EMAIL": "founder@example.com",
+    "CLOUDFLARE_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
+    "CLOUDFLARE_IMAGES_DELIVERY_HASH": "REPLACE_WITH_IMAGES_DELIVERY_HASH",
+    "AI_GATEWAY_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
+    "AI_GATEWAY_ID": "default",
+    "AI_PROVIDER": "workers-ai",
+    "AI_MODEL": "@cf/meta/llama-3.1-8b-instruct",
+    "AI_TEXT_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast",
+    "AI_EMBED_MODEL": "@cf/baai/bge-small-en-v1.5"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "octoworkers",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "./migrations"
+    }
+  ],
+  // Uncomment after you point the domain's DNS and zone to Cloudflare.
+  // "routes": [
+  //   {
+  //     "pattern": "example.com",
+  //     "custom_domain": true
+  //   },
+  //   {
+  //     "pattern": "admin.example.com",
+  //     "custom_domain": true
+  //   }
+  // ],
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "staging": {
+      "name": "octoworkers-staging",
+      "ai": {
+        "binding": "AI",
+        "remote": true
+      },
+      "vars": {
+        "ENV_NAME": "staging",
+        "APP_DOMAIN": "staging.example.com",
+        "ADMIN_DOMAIN": "admin.staging.example.com",
+        "ADMIN_ACCESS_MODE": "hybrid",
+        "ADMIN_ALLOWED_EMAILS": "founder@example.com",
+        "ADMIN_LOGIN_EMAIL": "founder@example.com",
+        "CLOUDFLARE_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
+        "CLOUDFLARE_IMAGES_DELIVERY_HASH": "REPLACE_WITH_STAGING_IMAGES_DELIVERY_HASH",
+        "AI_GATEWAY_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
+        "AI_GATEWAY_ID": "default",
+        "AI_PROVIDER": "workers-ai",
+        "AI_MODEL": "@cf/meta/llama-3.1-8b-instruct",
+        "AI_TEXT_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast",
+        "AI_EMBED_MODEL": "@cf/baai/bge-small-en-v1.5"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "octoworkers-staging",
+          "database_id": "REPLACE_WITH_STAGING_D1_DATABASE_ID",
+          "migrations_dir": "./migrations"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "APP_KV"
+        }
+      ],
+      "vectorize": [
+        {
+          "binding": "DOC_INDEX",
+          "index_name": "octoworkers-staging-doc-index",
+          "remote": true
+        }
+      ],
+      "durable_objects": {
+        "bindings": [
+          {
+            "name": "OpsAgent",
+            "class_name": "OpsAgent"
+          }
+        ]
+      },
+      // ,
+      // "r2_buckets": [
+      //   {
+      //     "binding": "MEDIA_R2",
+      //     "bucket_name": "octoworkers-staging-media"
+      //   }
+      // ]
+      // "routes": [
+      //   {
+      //     "pattern": "staging.example.com",
+      //     "custom_domain": true
+      //   },
+      //   {
+      //     "pattern": "admin.staging.example.com",
+      //     "custom_domain": true
+      //   }
+      // ]
+    }
+  }
+}
