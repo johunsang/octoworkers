@@ -56,3 +56,60 @@ export async function readAdminSession(c: Context<{ Bindings: AppBindings }>) {
 export function validateCredentials(env: AppBindings, email: string, password: string) {
   return env.ADMIN_LOGIN_EMAIL === email && env.ADMIN_LOGIN_PASSWORD === password
 }
+
+export function githubConfigured(env: AppBindings) {
+  return Boolean(env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET && env.ADMIN_JWT_SECRET)
+}
+
+export function buildGithubAuthUrl(env: AppBindings, redirectUri: string) {
+  const params = new URLSearchParams({
+    client_id: env.GITHUB_CLIENT_ID!,
+    redirect_uri: redirectUri,
+    scope: 'read:user user:email',
+  })
+  return `https://github.com/login/oauth/authorize?${params}`
+}
+
+export async function exchangeGithubCode(env: AppBindings, code: string, redirectUri: string) {
+  const res = await fetch('https://github.com/login/oauth/access_token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      client_id: env.GITHUB_CLIENT_ID,
+      client_secret: env.GITHUB_CLIENT_SECRET,
+      code,
+      redirect_uri: redirectUri,
+    }),
+  })
+  const data = (await res.json()) as { access_token?: string; error?: string }
+  if (!data.access_token) throw new Error(data.error ?? 'GitHub token exchange failed')
+  return data.access_token
+}
+
+export async function fetchGithubUser(accessToken: string) {
+  const res = await fetch('https://api.github.com/user', {
+    headers: { Authorization: `Bearer ${accessToken}`, 'User-Agent': 'OctoTerminal', Accept: 'application/json' },
+  })
+  if (!res.ok) throw new Error('Failed to fetch GitHub user')
+  const user = (await res.json()) as { login: string; email: string | null; avatar_url: string; name: string | null }
+
+  if (!user.email) {
+    const emailRes = await fetch('https://api.github.com/user/emails', {
+      headers: { Authorization: `Bearer ${accessToken}`, 'User-Agent': 'OctoTerminal', Accept: 'application/json' },
+    })
+    const emails = (await emailRes.json()) as Array<{ email: string; primary: boolean }>
+    const primary = emails.find((e) => e.primary)
+    if (primary) user.email = primary.email
+  }
+
+  return user
+}
+
+export function isAllowedGithubUser(env: AppBindings, login: string) {
+  const allowed = (env.GITHUB_ALLOWED_USERS ?? '')
+    .split(',')
+    .map((u) => u.trim().toLowerCase())
+    .filter(Boolean)
+  if (allowed.length === 0) return true
+  return allowed.includes(login.toLowerCase())
+}

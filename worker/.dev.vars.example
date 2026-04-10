@@ -5,3 +5,7 @@ ADMIN_LOGIN_PASSWORD=replace-me
 ADMIN_JWT_SECRET=replace-me-with-a-long-random-secret
 # Email (Resend)
 RESEND_API_KEY=replace-me
+# GitHub OAuth
+GITHUB_CLIENT_ID=replace-me
+GITHUB_CLIENT_SECRET=replace-me
+GITHUB_ALLOWED_USERS=johunsang

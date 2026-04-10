@@ -88,4 +88,7 @@ export type AppBindings = {
   AI_PROVIDER_API_KEY?: string
   RESEND_API_KEY?: string
   RESEND_FROM_ADDRESS?: string
+  GITHUB_CLIENT_ID?: string
+  GITHUB_CLIENT_SECRET?: string
+  GITHUB_ALLOWED_USERS?: string
 }

@@ -59,7 +59,8 @@
     "AI_PROVIDER": "workers-ai",
     "AI_MODEL": "@cf/meta/llama-3.1-8b-instruct",
     "AI_TEXT_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast",
-    "AI_EMBED_MODEL": "@cf/baai/bge-small-en-v1.5"
+    "AI_EMBED_MODEL": "@cf/baai/bge-small-en-v1.5",
+    "GITHUB_ALLOWED_USERS": "johunsang"
   },
   "d1_databases": [
     {

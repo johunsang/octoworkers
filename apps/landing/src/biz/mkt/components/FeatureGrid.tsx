@@ -1,19 +1,19 @@
 const items = [
   {
-    title: 'Separated surfaces',
-    description: 'Landing and admin are independent Vite apps, so brand work and internal tooling can evolve without stepping on each other.',
+    title: 'PTY Terminal',
+    description: 'Real pseudo-terminal sessions with WebGL-accelerated rendering, split panels, and 5000-line scrollback.',
   },
   {
-    title: 'Domain-first Cloudflare setup',
-    description: 'Apex/root domain and admin subdomain both terminate on Cloudflare and are routed by the same Worker runtime.',
+    title: 'Multi-Project Workspace',
+    description: 'Each project gets its own working directory, terminal tabs, theme, and font settings. Session state persists across restarts.',
   },
   {
-    title: 'Images workflow',
-    description: 'Admin can request direct upload URLs, send large files straight to Cloudflare Images, and persist asset metadata in D1.',
+    title: 'Built-in File Manager',
+    description: 'File tree sidebar with drag-and-drop, multi-select copy/cut, undo stack, and integrated text/image/docx/xlsx editors.',
   },
   {
-    title: 'AI Gateway layer',
-    description: 'Prompting flows through Cloudflare AI Gateway, so provider switching, logging, and rate shaping stay centralized.',
+    title: 'AI Agent Integration',
+    description: 'Run Claude, Codex, OpenCode, Kimi, or Ollama CLI agents directly in the terminal with MCP browser bridge.',
   },
 ]
 
