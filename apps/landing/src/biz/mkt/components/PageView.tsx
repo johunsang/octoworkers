@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { apiFetch } from '../../../com/api/client'
 import { adminUrl, homeUrl, pageUrl } from '../../../com/url'
+import { sanitizeHtml } from '../../../com/sanitize'
 
 type Page = { id: number; slug: string; title: string; contentHtml: string; publishedAt: string | null }
 type PageSummary = { id: number; slug: string; title: string }
@@ -39,7 +40,7 @@ export function PageView({ slug }: { slug: string }) {
               <span className="page-view-slug">/{page.slug}</span>
               {page.publishedAt && <time>{new Date(page.publishedAt).toLocaleDateString('ko-KR')}</time>}
             </div>
-            <div className="page-view-body" dangerouslySetInnerHTML={{ __html: page.contentHtml }} />
+            <div className="page-view-body" dangerouslySetInnerHTML={{ __html: sanitizeHtml(page.contentHtml) }} />
           </article>
         )}
       </main>

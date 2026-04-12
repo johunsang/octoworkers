@@ -7,6 +7,7 @@ import type { AppBindings } from './com/bindings'
 import { OpsAgent } from './biz/agt/ops-agent'
 import { agentRoutes } from './biz/agt/routes'
 import { applySecurityHeaders, enforceAdminAccess } from './com/security'
+import { requireRole } from './com/rbac'
 import { aiRoutes } from './biz/aid/routes'
 import { authRoutes } from './biz/aut/routes'
 import { dashboardRoutes } from './biz/dsh/routes'
@@ -23,6 +24,7 @@ import { vectorRoutes } from './biz/vec/routes'
 import { userRoutes } from './biz/usr/routes'
 import { logRoutes } from './biz/log/routes'
 import { logApiRequest } from './biz/log/repository'
+import { rateLimit } from './com/rate-limit'
 
 export function createApp() {
   const app = new Hono<{ Bindings: AppBindings }>()
@@ -46,6 +48,13 @@ export function createApp() {
   }))
   app.use('/api/*', etag())
 
+  // H-3: Rate Limiting (로그인, 리드, 이메일, AI)
+  app.use('/api/auth/login', rateLimit({ maxRequests: 10, windowSeconds: 60 }))
+  app.use('/api/auth/github', rateLimit({ maxRequests: 10, windowSeconds: 60 }))
+  app.use('/api/public/leads', rateLimit({ maxRequests: 5, windowSeconds: 60 }))
+  app.use('/api/admin/email/send', rateLimit({ maxRequests: 10, windowSeconds: 60 }))
+  app.use('/api/admin/ai/*', rateLimit({ maxRequests: 20, windowSeconds: 60 }))
+
   // API 요청 로깅 미들웨어
   app.use('/api/*', async (c, next) => {
     const start = Date.now()
@@ -56,13 +65,34 @@ export function createApp() {
     try {
       await logApiRequest(c.env.DB, c.req.method, path, c.res.status, duration, undefined, undefined, ip)
     } catch {
-      // 로깅 실패는 무시 (테이블 없을 수 있음)
+      // 로깅 실패 무시
     }
   })
 
+  // 공개 API (인증/역할 불필요)
   app.route('/api/health', healthRoutes)
   app.route('/api/auth', authRoutes)
   app.route('/api/public', publicRoutes)
+
+  // M-4: role 기반 권한 — viewer (읽기 전용)
+  app.use('/api/admin/dashboard', requireRole('viewer'))
+  app.use('/api/admin/search', requireRole('viewer'))
+  app.use('/api/admin/logs/*', requireRole('viewer'))
+
+  // M-4: role 기반 권한 — editor (콘텐츠 수정)
+  app.use('/api/admin/settings', requireRole('editor'))
+  app.use('/api/admin/leads/*', requireRole('editor'))
+  app.use('/api/admin/images/*', requireRole('editor'))
+  app.use('/api/admin/email/*', requireRole('editor'))
+  app.use('/api/admin/pages/*', requireRole('editor'))
+  app.use('/api/admin/ai/*', requireRole('editor'))
+  app.use('/api/admin/vec/*', requireRole('editor'))
+  app.use('/api/admin/agt/*', requireRole('editor'))
+  app.use('/api/admin/ext/*', requireRole('editor'))
+
+  // M-4: role 기반 권한 — admin (사용자 관리)
+  app.use('/api/admin/users/*', requireRole('admin'))
+
   app.route('/api/admin/dashboard', dashboardRoutes)
   app.route('/api/admin/settings', settingsRoutes)
   app.route('/api/admin/leads', leadsRoutes)

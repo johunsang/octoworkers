@@ -1,7 +1,15 @@
 import { useState } from 'react'
+import DOMPurify from 'dompurify'
 import type { Page } from '@octoworkers/com'
 import { Panel } from '../../../com/ui/Panel'
 import { usePages } from '../hooks/usePages'
+
+function sanitizePageHtml(html: string) {
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'ul', 'ol', 'li', 'strong', 'em', 'code', 'pre', 'hr', 'br', 'blockquote', 'table', 'thead', 'tbody', 'tr', 'th', 'td'],
+    ALLOWED_ATTR: ['href', 'target', 'rel'],
+  })
+}
 
 export function PagePanel() {
   const { pages, selectedPage, loading, fetchPage, closePage, create, update, publish, unpublish, remove } = usePages()
@@ -97,7 +105,7 @@ export function PagePanel() {
               </div>
               <div
                 style={{ marginTop: '1rem', padding: '1rem', background: 'var(--surface, #f5f5f5)', borderRadius: '8px' }}
-                dangerouslySetInnerHTML={{ __html: selectedPage.contentHtml }}
+                dangerouslySetInnerHTML={{ __html: sanitizePageHtml(selectedPage.contentHtml) }}
               />
             </>
           )}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { apiFetch } from '../../../com/api/client'
 import { pageUrl } from '../../../com/url'
+import { sanitizeHtml } from '../../../com/sanitize'
 
 type PageSummary = { id: number; slug: string; title: string }
 type PageDetail = { id: number; slug: string; title: string; contentHtml: string }
@@ -37,7 +38,7 @@ export function SamplePages() {
               <a href={`/api/public/pages/${selected.slug}`} target="_blank" rel="noreferrer">JSON API</a>
             </div>
           </div>
-          <div className="page-preview-body" dangerouslySetInnerHTML={{ __html: selected.contentHtml }} />
+          <div className="page-preview-body" dangerouslySetInnerHTML={{ __html: sanitizeHtml(selected.contentHtml) }} />
         </div>
       )}
     </div>
