@@ -6,6 +6,11 @@ import * as repo from './repository'
 
 const app = new Hono<{ Bindings: AppBindings }>()
 
+function parseId(raw: string): number | null {
+  const n = Number(raw)
+  return Number.isInteger(n) && n > 0 ? n : null
+}
+
 const userSchema = z.object({
   email: z.string().email(),
   name: z.string().min(1).max(100),
@@ -28,7 +33,9 @@ app.get('/', async (c) => {
 })
 
 app.get('/:id', async (c) => {
-  const user = await repo.getUserById(c.env.DB, Number(c.req.param('id')))
+  const id = parseId(c.req.param('id'))
+  if (!id) return c.json({ message: 'Invalid user ID' }, 400)
+  const user = await repo.getUserById(c.env.DB, id)
   if (!user) return c.json({ message: 'User not found' }, 404)
   return c.json({
     id: user.id, email: user.email, name: user.name, role: user.role,
@@ -45,14 +52,16 @@ app.post('/', zValidator('json', userSchema), async (c) => {
 })
 
 app.put('/:id', zValidator('json', updateSchema), async (c) => {
-  const id = Number(c.req.param('id'))
+  const id = parseId(c.req.param('id'))
+  if (!id) return c.json({ message: 'Invalid user ID' }, 400)
   const { name, role } = c.req.valid('json')
   await repo.updateUser(c.env.DB, id, name, role)
   return c.json({ ok: true })
 })
 
 app.put('/:id/toggle', async (c) => {
-  const id = Number(c.req.param('id'))
+  const id = parseId(c.req.param('id'))
+  if (!id) return c.json({ message: 'Invalid user ID' }, 400)
   const user = await repo.getUserById(c.env.DB, id)
   if (!user) return c.json({ message: 'User not found' }, 404)
   await repo.toggleUserActive(c.env.DB, id, user.is_active === 0)
@@ -60,7 +69,9 @@ app.put('/:id/toggle', async (c) => {
 })
 
 app.delete('/:id', async (c) => {
-  await repo.deleteUser(c.env.DB, Number(c.req.param('id')))
+  const delId = parseId(c.req.param('id'))
+  if (!delId) return c.json({ message: 'Invalid user ID' }, 400)
+  await repo.deleteUser(c.env.DB, delId)
   return c.json({ ok: true })
 })
 

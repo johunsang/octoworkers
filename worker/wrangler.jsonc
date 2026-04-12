@@ -76,7 +76,7 @@
       "migrations_dir": "./migrations"
     }
   ],
-  "workers_dev": true,
+  "workers_dev": false,
   "routes": [
     {
       "pattern": "octoworkers.com",

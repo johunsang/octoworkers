@@ -9,7 +9,7 @@ const app = new Hono<{ Bindings: AppBindings }>()
 
 // 접속 로그 목록
 app.get('/access', async (c) => {
-  const limit = Number(c.req.query('limit') ?? '50')
+  const limit = Math.min(Math.max(Number(c.req.query('limit') ?? '50') || 50, 1), 200)
   const logs = await repo.listAccessLogs(c.env.DB, limit)
   return c.json(logs.map((l) => ({
     id: l.id, userEmail: l.user_email, action: l.action, path: l.path,
@@ -20,7 +20,7 @@ app.get('/access', async (c) => {
 
 // API 로그 목록
 app.get('/api', async (c) => {
-  const limit = Number(c.req.query('limit') ?? '50')
+  const limit = Math.min(Math.max(Number(c.req.query('limit') ?? '50') || 50, 1), 200)
   const logs = await repo.listApiLogs(c.env.DB, limit)
   return c.json(logs.map((l) => ({
     id: l.id, method: l.method, path: l.path, statusCode: l.status_code,

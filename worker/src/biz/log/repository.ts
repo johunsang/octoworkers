@@ -25,14 +25,22 @@ export type ApiLogRow = {
   created_at: string
 }
 
-export async function logAccess(db: D1Database, userEmail: string, action: string, path: string, method: string, statusCode?: number, ipAddress?: string, userAgent?: string) {
-  await db.prepare('INSERT INTO access_logs (user_email, action, path, method, status_code, ip_address, user_agent, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-    .bind(userEmail, action, path, method, statusCode ?? null, ipAddress ?? null, userAgent ?? null, isoNow()).run()
+function maskIp(ip?: string): string | null {
+  if (!ip) return null
+  if (ip.includes(':')) return ip.replace(/:[^:]*$/, ':****')
+  const parts = ip.split('.')
+  if (parts.length === 4) return `${parts[0]}.${parts[1]}.*.*`
+  return ip.substring(0, Math.ceil(ip.length / 2)) + '****'
 }
 
-export async function logApiRequest(db: D1Database, method: string, path: string, statusCode: number, durationMs?: number, requestBody?: string, responseSize?: number, ipAddress?: string) {
+export async function logAccess(db: D1Database, userEmail: string, action: string, path: string, method: string, statusCode?: number, ipAddress?: string, userAgent?: string) {
+  await db.prepare('INSERT INTO access_logs (user_email, action, path, method, status_code, ip_address, user_agent, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+    .bind(userEmail, action, path, method, statusCode ?? null, maskIp(ipAddress), userAgent ?? null, isoNow()).run()
+}
+
+export async function logApiRequest(db: D1Database, method: string, path: string, statusCode: number, durationMs?: number, _requestBody?: string, responseSize?: number, ipAddress?: string) {
   await db.prepare('INSERT INTO api_logs (method, path, status_code, duration_ms, request_body, response_size, ip_address, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-    .bind(method, path, statusCode, durationMs ?? null, requestBody ?? null, responseSize ?? null, ipAddress ?? null, isoNow()).run()
+    .bind(method, path, statusCode, durationMs ?? null, null, responseSize ?? null, maskIp(ipAddress), isoNow()).run()
 }
 
 export async function listAccessLogs(db: D1Database, limit = 50) {

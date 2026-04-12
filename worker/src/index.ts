@@ -30,7 +30,20 @@ export function createApp() {
   app.use('*', applySecurityHeaders)
   app.use('*', enforceAdminAccess)
   app.use('/agents/*', agentsMiddleware())
-  app.use('/api/*', cors())
+  app.use('/api/*', cors({
+    origin: (origin) => {
+      const allowed = [
+        'https://octoworkers.com',
+        'https://admin.octoworkers.com',
+        'https://app.octoworkers.com',
+      ]
+      if (!origin) return origin
+      if (allowed.includes(origin)) return origin
+      if (origin.startsWith('http://localhost:')) return origin
+      return undefined
+    },
+    credentials: true,
+  }))
   app.use('/api/*', etag())
 
   // API 요청 로깅 미들웨어

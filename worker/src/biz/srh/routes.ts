@@ -24,7 +24,8 @@ searchRoutes.get('/', async (c) => {
     return c.json({ leads: [], media: [] })
   }
 
-  const keyword = `%${query}%`
+  const escaped = query.replace(/%/g, '\\%').replace(/_/g, '\\_')
+  const keyword = `%${escaped}%`
   const leads = await allRows<SearchLead>(
     c.env.DB.prepare(
       `
