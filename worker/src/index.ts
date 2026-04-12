@@ -20,6 +20,9 @@ import { settingsRoutes } from './biz/set/routes'
 import { emailRoutes } from './biz/eml/routes'
 import { pageRoutes } from './biz/pag/routes'
 import { vectorRoutes } from './biz/vec/routes'
+import { userRoutes } from './biz/usr/routes'
+import { logRoutes } from './biz/log/routes'
+import { logApiRequest } from './biz/log/repository'
 
 export function createApp() {
   const app = new Hono<{ Bindings: AppBindings }>()
@@ -29,6 +32,20 @@ export function createApp() {
   app.use('/agents/*', agentsMiddleware())
   app.use('/api/*', cors())
   app.use('/api/*', etag())
+
+  // API 요청 로깅 미들웨어
+  app.use('/api/*', async (c, next) => {
+    const start = Date.now()
+    await next()
+    const duration = Date.now() - start
+    const path = new URL(c.req.url).pathname
+    const ip = c.req.header('cf-connecting-ip') ?? c.req.header('x-forwarded-for') ?? ''
+    try {
+      await logApiRequest(c.env.DB, c.req.method, path, c.res.status, duration, undefined, undefined, ip)
+    } catch {
+      // 로깅 실패는 무시 (테이블 없을 수 있음)
+    }
+  })
 
   app.route('/api/health', healthRoutes)
   app.route('/api/auth', authRoutes)
@@ -44,6 +61,8 @@ export function createApp() {
   app.route('/api/admin/email', emailRoutes)
   app.route('/api/admin/pages', pageRoutes)
   app.route('/api/admin/ext', extRoutes)
+  app.route('/api/admin/users', userRoutes)
+  app.route('/api/admin/logs', logRoutes)
 
   app.all('*', async (c) => serveBoundAsset(c))
 

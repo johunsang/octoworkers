@@ -20,5 +20,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile=false
       - run: pnpm check
+      - name: Verify D1 migrations (local)
+        run: pnpm --filter @octoworkers/worker db:migrate:local
       - run: pnpm test
       - run: pnpm build

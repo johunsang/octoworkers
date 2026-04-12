@@ -154,10 +154,14 @@ Browser
         /api/admin/agt        → agt/ (Durable Object 에이전트)
         /api/admin/search     → srh/ (SQL LIKE 전문 검색)
         /api/admin/vec        → vec/ (Vectorize 시맨틱 검색)
+        /api/admin/users      → usr/ (사용자 관리: CRUD, 역할, 활성화)
+        /api/admin/logs       → log/ (접속 로그, API 로그, 시스템 통계)
         /api/admin/ext        → ext/ (KV/R2/WS 예제)
+    → API 로깅 미들웨어 → 모든 /api/* 요청을 api_logs 테이블에 자동 기록
     → * → serveBoundAsset (SPA 정적자산)
-        → ADMIN_DOMAIN → /admin/index.html
-        → APP_DOMAIN   → /landing/index.html
+        → admin.octoworkers.com → /admin/index.html
+        → app.octoworkers.com   → /landing/index.html (PageListView)
+        → octoworkers.com       → /landing/index.html
 ```
 
 ### 인증 모델
@@ -182,14 +186,17 @@ Browser
 ### DB 스키마
 
 ```sql
-site_settings  — 싱글톤(id=1): brand, hero_label, hero_title, hero_subtitle, cta_primary, cta_secondary
-leads          — name, email, company, message, status, assigned_to, source, created_at
-lead_tags      — lead_id, tag, created_at (UNIQUE lead_id+tag)
-lead_notes     — lead_id, content, created_by, created_at
-media_assets   — image_id, title, alt, status, delivery_url, preview_url, uploaded_at
+site_settings   — 싱글톤(id=1): brand, hero_label, hero_title, hero_subtitle, cta_primary, cta_secondary
+leads           — name, email, company, message, status, assigned_to, source, created_at
+lead_tags       — lead_id, tag, created_at (UNIQUE lead_id+tag)
+lead_notes      — lead_id, content, created_by, created_at
+media_assets    — image_id, title, alt, status, delivery_url, preview_url, uploaded_at
 email_templates — name, subject, body_html, body_text, created_at, updated_at
-email_logs     — lead_id, template_id, subject, status, sent_at
-pages          — slug(UNIQUE), title, content_md, content_html, status, published_at, created_at, updated_at
+email_logs      — lead_id, template_id, subject, status, sent_at
+pages           — slug(UNIQUE), title, content_md, content_html, status, published_at, created_at, updated_at
+admin_users     — email(UNIQUE), name, role, avatar_url, github_login, last_login_at, is_active, created_at, updated_at
+access_logs     — user_email, action, path, method, status_code, ip_address, user_agent, created_at
+api_logs        — method, path, status_code, duration_ms, request_body, response_size, ip_address, created_at
 ```
 
 ### 보안 헤더
@@ -218,13 +225,13 @@ octoworkers/
 │   ├── main.tsx, App.tsx     # 어드민 메인 (로그인 → 사이드바 + 패널)
 │   ├── com/api/client.ts     # apiFetch<T>()
 │   ├── com/ui/Panel.tsx      # 대시보드 카드
-│   └── biz/                  # aut/, dsh/, set/, led/, med/, aid/, srh/, eml/, pag/, ext/
+│   └── biz/                  # aut/, dsh/, set/, led/, med/, aid/, srh/, eml/, pag/, ext/, usr/, log/
 │
 ├── worker/
 │   ├── src/index.ts          # createApp() — 미들웨어 + 라우트 등록
 │   ├── src/com/              # bindings, db, http, env, security, assets, ai-gateway, workers-ai
-│   ├── src/biz/              # aut, pub, dsh, led, med, set, aid, srh, vec, agt, hlt, eml, pag, ext
-│   ├── migrations/           # 0001_initial.sql ~ 0004_pages.sql
+│   ├── src/biz/              # aut, pub, dsh, led, med, set, aid, srh, vec, agt, hlt, eml, pag, ext, usr, log
+│   ├── migrations/           # 0001_initial.sql ~ 0006_admin_system.sql
 │   ├── test/app.test.ts      # Vitest (mock 바인딩)
 │   ├── wrangler.jsonc        # prod + staging 설정
 │   └── .dev.vars.example     # 시크릿 템플릿
@@ -293,6 +300,12 @@ octoworkers/
 | `/api/admin/pages/:id/unpublish` | POST | pag | 페이지 발행 취소 |
 | `/api/public/pages` | GET | pub | 공개 페이지 목록 |
 | `/api/public/pages/:slug` | GET | pub | 공개 페이지 상세 |
+| `/api/admin/users` | GET/POST | usr | 사용자 목록/생성 |
+| `/api/admin/users/:id` | GET/PUT/DELETE | usr | 사용자 상세/수정/삭제 |
+| `/api/admin/users/:id/toggle` | PUT | usr | 사용자 활성화/비활성화 |
+| `/api/admin/logs/access` | GET | log | 접속 로그 (limit 파라미터) |
+| `/api/admin/logs/api` | GET | log | API 요청 로그 (limit 파라미터) |
+| `/api/admin/logs/stats` | GET | log | 시스템 통계 (사용자/리드/미디어/페이지/이메일/API 집계) |
 | `/api/admin/ext/*` | 다양 | ext | KV/R2/WS/AI 예제 |
 
 ## 코드 스타일

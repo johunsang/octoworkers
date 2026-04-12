@@ -216,6 +216,39 @@ textarea {
   color: #a52d2d;
 }
 
+.role-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.role-super_admin { background: #fef3c7; color: #92400e; }
+.role-admin { background: #dbeafe; color: #1e40af; }
+.role-editor { background: #dcfce7; color: #166534; }
+.role-viewer { background: #f3f4f6; color: #374151; }
+
+.small-btn {
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 120ms;
+}
+.small-btn:hover { background: #f3f4f6; }
+.small-btn.danger { color: #dc2626; border-color: rgba(220,38,38,0.2); }
+.small-btn.danger:hover { background: #fef2f2; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
 @media (max-width: 980px) {
   .admin-shell,
   .admin-grid,

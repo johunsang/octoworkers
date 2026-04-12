@@ -172,3 +172,62 @@ export type PageSummary = {
   publishedAt: string | null
   updatedAt: string
 }
+
+// --- Admin System ---
+
+export type AdminUserRole = 'super_admin' | 'admin' | 'editor' | 'viewer'
+
+export type AdminUser = {
+  id: number
+  email: string
+  name: string
+  role: AdminUserRole
+  avatarUrl: string | null
+  githubLogin: string | null
+  lastLoginAt: string | null
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export type AdminUserInput = {
+  email: string
+  name: string
+  role: AdminUserRole
+}
+
+export type AccessLog = {
+  id: number
+  userEmail: string
+  action: string
+  path: string
+  method: string
+  statusCode: number | null
+  ipAddress: string | null
+  userAgent: string | null
+  createdAt: string
+}
+
+export type ApiLog = {
+  id: number
+  method: string
+  path: string
+  statusCode: number
+  durationMs: number | null
+  requestBody: string | null
+  responseSize: number | null
+  ipAddress: string | null
+  createdAt: string
+}
+
+export type SystemStats = {
+  totalUsers: number
+  activeUsers: number
+  totalLeads: number
+  totalMedia: number
+  totalPages: number
+  totalEmails: number
+  totalApiRequests: number
+  recentAccessLogs: AccessLog[]
+  recentApiLogs: ApiLog[]
+}

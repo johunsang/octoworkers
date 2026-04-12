@@ -6,7 +6,9 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./public",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none"
   },
   "ai": {
     "binding": "AI",
@@ -14,16 +16,18 @@
   },
   "kv_namespaces": [
     {
-      "binding": "APP_KV"
+      "binding": "APP_KV",
+      "id": "9b17c2310dcc40fb92805a944db1b70f"
     }
   ],
-  "vectorize": [
-    {
-      "binding": "DOC_INDEX",
-      "index_name": "octoworkers-doc-index",
-      "remote": true
-    }
-  ],
+  // Vectorize: wrangler vectorize create octoworkers-doc-index --dimensions 384 --metric cosine
+  // "vectorize": [
+  //   {
+  //     "binding": "DOC_INDEX",
+  //     "index_name": "octoworkers-doc-index",
+  //     "remote": true
+  //   }
+  // ],
   "durable_objects": {
     "bindings": [
       {
@@ -38,7 +42,7 @@
       "new_sqlite_classes": ["OpsAgent"]
     }
   ],
-  // Uncomment and set your actual bucket name to enable the R2 example.
+  // R2: wrangler r2 bucket create octoworkers-media
   // "r2_buckets": [
   //   {
   //     "binding": "MEDIA_R2",
@@ -47,111 +51,47 @@
   // ],
   "vars": {
     "ENV_NAME": "production",
-    "APP_DOMAIN": "example.com",
-    "ADMIN_DOMAIN": "admin.example.com",
+    "APP_DOMAIN": "octoworkers.com",
+    "ADMIN_DOMAIN": "admin.octoworkers.com",
+    "SAAS_DOMAIN": "app.octoworkers.com",
     "ADMIN_ACCESS_MODE": "hybrid",
-    "ADMIN_ALLOWED_EMAILS": "founder@example.com",
-    "ADMIN_LOGIN_EMAIL": "founder@example.com",
-    "CLOUDFLARE_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
-    "CLOUDFLARE_IMAGES_DELIVERY_HASH": "REPLACE_WITH_IMAGES_DELIVERY_HASH",
-    "AI_GATEWAY_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
+    "ADMIN_ALLOWED_EMAILS": "johunsang@gmail.com",
+    "ADMIN_LOGIN_EMAIL": "johunsang@gmail.com",
+    "CLOUDFLARE_ACCOUNT_ID": "d1532c124d033073b3e89251e57af0ad",
+    "CLOUDFLARE_IMAGES_DELIVERY_HASH": "",
+    "AI_GATEWAY_ACCOUNT_ID": "d1532c124d033073b3e89251e57af0ad",
     "AI_GATEWAY_ID": "default",
     "AI_PROVIDER": "workers-ai",
     "AI_MODEL": "@cf/meta/llama-3.1-8b-instruct",
     "AI_TEXT_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast",
     "AI_EMBED_MODEL": "@cf/baai/bge-small-en-v1.5",
-    "GITHUB_ALLOWED_USERS": "johunsang"
+    "GITHUB_ALLOWED_USERS": "johunsang",
+    "GITHUB_CLIENT_ID": "Ov23li6eJv2db2Prx902"
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "octoworkers",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "b517d7e6-e7b5-4f3b-97c7-5c875daa4db2",
       "migrations_dir": "./migrations"
     }
   ],
-  // Uncomment after you point the domain's DNS and zone to Cloudflare.
-  // "routes": [
-  //   {
-  //     "pattern": "example.com",
-  //     "custom_domain": true
-  //   },
-  //   {
-  //     "pattern": "admin.example.com",
-  //     "custom_domain": true
-  //   }
-  // ],
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "octoworkers.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "admin.octoworkers.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "app.octoworkers.com",
+      "custom_domain": true
+    }
+  ],
   "observability": {
     "enabled": true
-  },
-  "env": {
-    "staging": {
-      "name": "octoworkers-staging",
-      "ai": {
-        "binding": "AI",
-        "remote": true
-      },
-      "vars": {
-        "ENV_NAME": "staging",
-        "APP_DOMAIN": "staging.example.com",
-        "ADMIN_DOMAIN": "admin.staging.example.com",
-        "ADMIN_ACCESS_MODE": "hybrid",
-        "ADMIN_ALLOWED_EMAILS": "founder@example.com",
-        "ADMIN_LOGIN_EMAIL": "founder@example.com",
-        "CLOUDFLARE_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
-        "CLOUDFLARE_IMAGES_DELIVERY_HASH": "REPLACE_WITH_STAGING_IMAGES_DELIVERY_HASH",
-        "AI_GATEWAY_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
-        "AI_GATEWAY_ID": "default",
-        "AI_PROVIDER": "workers-ai",
-        "AI_MODEL": "@cf/meta/llama-3.1-8b-instruct",
-        "AI_TEXT_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast",
-        "AI_EMBED_MODEL": "@cf/baai/bge-small-en-v1.5"
-      },
-      "d1_databases": [
-        {
-          "binding": "DB",
-          "database_name": "octoworkers-staging",
-          "database_id": "REPLACE_WITH_STAGING_D1_DATABASE_ID",
-          "migrations_dir": "./migrations"
-        }
-      ],
-      "kv_namespaces": [
-        {
-          "binding": "APP_KV"
-        }
-      ],
-      "vectorize": [
-        {
-          "binding": "DOC_INDEX",
-          "index_name": "octoworkers-staging-doc-index",
-          "remote": true
-        }
-      ],
-      "durable_objects": {
-        "bindings": [
-          {
-            "name": "OpsAgent",
-            "class_name": "OpsAgent"
-          }
-        ]
-      },
-      // ,
-      // "r2_buckets": [
-      //   {
-      //     "binding": "MEDIA_R2",
-      //     "bucket_name": "octoworkers-staging-media"
-      //   }
-      // ]
-      // "routes": [
-      //   {
-      //     "pattern": "staging.example.com",
-      //     "custom_domain": true
-      //   },
-      //   {
-      //     "pattern": "admin.staging.example.com",
-      //     "custom_domain": true
-      //   }
-      // ]
-    }
   }
 }

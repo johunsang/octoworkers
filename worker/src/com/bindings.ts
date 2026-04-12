@@ -71,6 +71,7 @@ export type AppBindings = {
   ENV_NAME?: string
   APP_DOMAIN: string
   ADMIN_DOMAIN: string
+  SAAS_DOMAIN?: string
   ADMIN_ACCESS_MODE?: string
   ADMIN_ALLOWED_EMAILS?: string
   ADMIN_LOGIN_EMAIL?: string

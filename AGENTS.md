@@ -1,8 +1,6 @@
 # 옥토워커스 — 에이전트 작업 가이드
 
-> 이 프로젝트는 Cloudflare Workers 기반 SaaS 보일러플레이트다.
-> 복사해서 새 프로젝트를 시작하는 용도로 설계되었다.
-> 이 문서는 Codex, Claude Code 등 에이전트가 이 보일러플레이트를 올바르게 이해하고 커스터마이징을 도울 수 있도록 작성되었다.
+> 이 프로젝트는 Cloudflare Workers 기반 SaaS 보일러플레이트다. 복사해서 새 프로젝트를 시작하는 용도로 설계되었다. 이 문서는 Codex, Claude Code 등 에이전트가 이 보일러플레이트를 올바르게 이해하고 커스터마이징을 도울 수 있도록 작성되었다.
 
 ## 프로젝트 구조
 
@@ -47,6 +45,7 @@ cp worker/.dev.vars.example worker/.dev.vars
 ```
 
 배포용 시크릿:
+
 ```bash
 wrangler secret put ADMIN_LOGIN_PASSWORD
 wrangler secret put ADMIN_JWT_SECRET
@@ -60,15 +59,14 @@ wrangler secret put CLOUDFLARE_IMAGES_API_TOKEN  # 선택
 pnpm --filter @octoworkers/worker db:migrate:local
 ```
 
-기본 스키마: `site_settings`(싱글톤), `leads`, `media_assets`.
-새 테이블은 `worker/migrations/0002_*.sql`로 추가.
+기본 스키마: `site_settings`(싱글톤), `leads`, `media_assets`. 새 테이블은 `worker/migrations/0002_*.sql`로 추가.
 
 ### 5단계: 불필요한 예제 제거 (선택)
 
 보일러플레이트에 포함된 예제 모듈 중 불필요한 것을 제거할 수 있다:
 
 | 모듈 | 경로 | 제거 시 확인 |
-|------|------|-------------|
+| --- | --- | --- |
 | KV/R2/WS 예제 | `worker/src/biz/ext/`, `apps/admin/src/biz/ext/` | `index.ts`에서 `extRoutes` 제거 |
 | 에이전트 | `worker/src/biz/agt/` | `index.ts`에서 `agentRoutes` + `OpsAgent` export 제거, `wrangler.jsonc` DO 설정 제거 |
 | 벡터 검색 | `worker/src/biz/vec/` | `index.ts`에서 `vectorRoutes` 제거, `wrangler.jsonc` vectorize 설정 제거 |
@@ -103,7 +101,7 @@ pnpm --filter @octoworkers/worker db:migrate:local
 ## 기술 스택
 
 | Layer | Technology |
-|-------|------------|
+| --- | --- |
 | Language | TypeScript (strict) |
 | API | Hono 4 on Cloudflare Workers |
 | Frontend | React 19 + Vite (SWC), 두 개 앱 |
@@ -156,10 +154,14 @@ Browser
         /api/admin/agt        → agt/ (Durable Object 에이전트)
         /api/admin/search     → srh/ (SQL LIKE 전문 검색)
         /api/admin/vec        → vec/ (Vectorize 시맨틱 검색)
+        /api/admin/users      → usr/ (사용자 관리: CRUD, 역할, 활성화)
+        /api/admin/logs       → log/ (접속 로그, API 로그, 시스템 통계)
         /api/admin/ext        → ext/ (KV/R2/WS 예제)
+    → API 로깅 미들웨어 → 모든 /api/* 요청을 api_logs 테이블에 자동 기록
     → * → serveBoundAsset (SPA 정적자산)
-        → ADMIN_DOMAIN → /admin/index.html
-        → APP_DOMAIN   → /landing/index.html
+        → admin.octoworkers.com → /admin/index.html
+        → app.octoworkers.com   → /landing/index.html (PageListView)
+        → octoworkers.com       → /landing/index.html
 ```
 
 ### 인증 모델
@@ -172,7 +174,7 @@ Browser
 ### Cloudflare 바인딩
 
 | 바인딩 | 타입 | 필수 | 설명 |
-|--------|------|------|------|
+| --- | --- | --- | --- |
 | `DB` | D1 | 필수 | 메인 DB (settings, leads, media) |
 | `ASSETS` | Assets | 필수 | 프론트 정적자산 |
 | `APP_KV` | KV | 필수 | 키값 저장소 |
@@ -184,20 +186,22 @@ Browser
 ### DB 스키마
 
 ```sql
-site_settings  — 싱글톤(id=1): brand, hero_label, hero_title, hero_subtitle, cta_primary, cta_secondary
-leads          — name, email, company, message, status, assigned_to, source, created_at
-lead_tags      — lead_id, tag, created_at (UNIQUE lead_id+tag)
-lead_notes     — lead_id, content, created_by, created_at
-media_assets   — image_id, title, alt, status, delivery_url, preview_url, uploaded_at
+site_settings   — 싱글톤(id=1): brand, hero_label, hero_title, hero_subtitle, cta_primary, cta_secondary
+leads           — name, email, company, message, status, assigned_to, source, created_at
+lead_tags       — lead_id, tag, created_at (UNIQUE lead_id+tag)
+lead_notes      — lead_id, content, created_by, created_at
+media_assets    — image_id, title, alt, status, delivery_url, preview_url, uploaded_at
 email_templates — name, subject, body_html, body_text, created_at, updated_at
-email_logs     — lead_id, template_id, subject, status, sent_at
-pages          — slug(UNIQUE), title, content_md, content_html, status, published_at, created_at, updated_at
+email_logs      — lead_id, template_id, subject, status, sent_at
+pages           — slug(UNIQUE), title, content_md, content_html, status, published_at, created_at, updated_at
+admin_users     — email(UNIQUE), name, role, avatar_url, github_login, last_login_at, is_active, created_at, updated_at
+access_logs     — user_email, action, path, method, status_code, ip_address, user_agent, created_at
+api_logs        — method, path, status_code, duration_ms, request_body, response_size, ip_address, created_at
 ```
 
 ### 보안 헤더
 
-`applySecurityHeaders`가 모든 요청에 적용 (WebSocket 제외):
-CSP(self + imagedelivery.net), HSTS, X-Frame-Options:DENY, nosniff, COOP, Permissions-Policy
+`applySecurityHeaders`가 모든 요청에 적용 (WebSocket 제외): CSP(self + imagedelivery.net), HSTS, X-Frame-Options:DENY, nosniff, COOP, Permissions-Policy
 
 ## 상세 구조
 
@@ -221,13 +225,13 @@ octoworkers/
 │   ├── main.tsx, App.tsx     # 어드민 메인 (로그인 → 사이드바 + 패널)
 │   ├── com/api/client.ts     # apiFetch<T>()
 │   ├── com/ui/Panel.tsx      # 대시보드 카드
-│   └── biz/                  # aut/, dsh/, set/, led/, med/, aid/, srh/, eml/, pag/, ext/
+│   └── biz/                  # aut/, dsh/, set/, led/, med/, aid/, srh/, eml/, pag/, ext/, usr/, log/
 │
 ├── worker/
 │   ├── src/index.ts          # createApp() — 미들웨어 + 라우트 등록
 │   ├── src/com/              # bindings, db, http, env, security, assets, ai-gateway, workers-ai
-│   ├── src/biz/              # aut, pub, dsh, led, med, set, aid, srh, vec, agt, hlt, eml, pag, ext
-│   ├── migrations/           # 0001_initial.sql ~ 0004_pages.sql
+│   ├── src/biz/              # aut, pub, dsh, led, med, set, aid, srh, vec, agt, hlt, eml, pag, ext, usr, log
+│   ├── migrations/           # 0001_initial.sql ~ 0006_admin_system.sql
 │   ├── test/app.test.ts      # Vitest (mock 바인딩)
 │   ├── wrangler.jsonc        # prod + staging 설정
 │   └── .dev.vars.example     # 시크릿 템플릿
@@ -248,20 +252,20 @@ octoworkers/
 ### 파일 패턴
 
 | Worker | 역할 |
-|--------|------|
+| --- | --- |
 | `routes.ts` | Hono 라우터 (`new Hono<{ Bindings: AppBindings }>()`) |
 | `repository.ts` | D1 쿼리 (prepared statement 필수) |
 | `service.ts` | 비즈니스 로직 (필요 시) |
 
 | Frontend | 역할 |
-|----------|------|
+| --- | --- |
 | `hooks/use*.ts` | React 훅 (API 호출 + 상태 관리) |
 | `components/*.tsx` | UI 컴포넌트 |
 
 ## API 엔드포인트
 
 | 경로 | 메서드 | 모듈 | 설명 |
-|------|--------|------|------|
+| --- | --- | --- | --- |
 | `/api/health` | GET | hlt | 헬스체크 |
 | `/api/auth/me` | GET | aut | 세션 확인 |
 | `/api/auth/login` | POST | aut | 로그인 |
@@ -296,6 +300,12 @@ octoworkers/
 | `/api/admin/pages/:id/unpublish` | POST | pag | 페이지 발행 취소 |
 | `/api/public/pages` | GET | pub | 공개 페이지 목록 |
 | `/api/public/pages/:slug` | GET | pub | 공개 페이지 상세 |
+| `/api/admin/users` | GET/POST | usr | 사용자 목록/생성 |
+| `/api/admin/users/:id` | GET/PUT/DELETE | usr | 사용자 상세/수정/삭제 |
+| `/api/admin/users/:id/toggle` | PUT | usr | 사용자 활성화/비활성화 |
+| `/api/admin/logs/access` | GET | log | 접속 로그 (limit 파라미터) |
+| `/api/admin/logs/api` | GET | log | API 요청 로그 (limit 파라미터) |
+| `/api/admin/logs/stats` | GET | log | 시스템 통계 (사용자/리드/미디어/페이지/이메일/API 집계) |
 | `/api/admin/ext/*` | 다양 | ext | KV/R2/WS/AI 예제 |
 
 ## 코드 스타일
@@ -305,7 +315,7 @@ octoworkers/
 - 공유 타입은 반드시 `packages/com/src/contracts.ts`
 - Hono 라우트: `new Hono<{ Bindings: AppBindings }>()`
 - 프론트 API: `apiFetch<T>()` 헬퍼
-- 명확한 코드 > 영리한 코드
+- 명확한 코드 &gt; 영리한 코드
 - "why" 주석만, "what" 주석 금지
 
 ## 테스트
@@ -321,7 +331,7 @@ octoworkers/
 ## CI/CD
 
 | 워크플로우 | 트리거 | 동작 |
-|-----------|--------|------|
+| --- | --- | --- |
 | `ci.yml` | PR, main push | install → check → test → build |
 | `deploy-staging.yml` | develop push | build → D1 migrate → staging 배포 |
 | `deploy-production.yml` | main push | build → D1 migrate → production 배포 |
@@ -331,7 +341,7 @@ GitHub Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
 ## 시크릿
 
 | 키 | 용도 | 필수 |
-|----|------|------|
+| --- | --- | --- |
 | `ADMIN_LOGIN_PASSWORD` | 어드민 로그인 비밀번호 | 필수 |
 | `ADMIN_JWT_SECRET` | JWT 서명 키 | 필수 |
 | `AI_PROVIDER_API_KEY` | AI Gateway API 키 | AI 사용 시 |
