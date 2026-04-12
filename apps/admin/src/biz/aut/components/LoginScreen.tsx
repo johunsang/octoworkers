@@ -7,7 +7,7 @@ export function LoginScreen({ onLogin: _onLogin }: LoginScreenProps) {
     <main className="login-shell">
       <section className="login-card">
         <span>Admin Login</span>
-        <h1>Sign in to Octo Terminal Ops</h1>
+        <h1>옥토워커스 관리 콘솔</h1>
         <p>GitHub 계정으로 로그인하세요. 허가된 사용자만 접근할 수 있습니다.</p>
         <div className="form-grid">
           <a

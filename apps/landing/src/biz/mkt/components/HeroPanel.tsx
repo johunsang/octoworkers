@@ -7,20 +7,20 @@ export function HeroPanel({ metrics, loading }: HeroPanelProps) {
   return (
     <section className="hero-panel">
       <div className="hero-copy">
-        <span>AI Development Terminal</span>
-        <h1>Octo Terminal</h1>
-        <p>Clean, cute, and powerful. A native desktop terminal with built-in file management, AI agents, and remote control.</p>
+        <span>Cloudflare Workers SaaS Boilerplate</span>
+        <h1>옥토워커스</h1>
+        <p>랜딩, 어드민, API, DB, 미디어, AI, 이메일, CMS를 하나의 에지 런타임에서 운영하세요. 복사해서 바로 SaaS를 시작할 수 있습니다.</p>
         <div className="hero-actions">
-          <a href="#download">Download</a>
-          <a href="https://github.com/johunsang/octo-terminal-releases" target="_blank" rel="noreferrer">
+          <a href="#lead-capture">도입 문의</a>
+          <a href="https://github.com/octoworkers" target="_blank" rel="noreferrer">
             GitHub
           </a>
         </div>
       </div>
       <div className="hero-metrics">
         <header>
-          <strong>Octo Terminal</strong>
-          <p>{loading ? 'Loading...' : 'Tauri v2 + React + xterm.js'}</p>
+          <strong>옥토워커스</strong>
+          <p>{loading ? 'Loading...' : 'Hono + Vite + D1 + AI Gateway'}</p>
         </header>
         <div className="metric-grid">
           {metrics.map((metric) => (
