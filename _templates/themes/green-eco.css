@@ -1,0 +1,39 @@
+/* Theme: Green Eco
+ * 스타일: 친환경/지속가능성 그린 팔레트
+ * 참고: 환경 SaaS, ESG 플랫폼, 친환경 스타트업
+ * 폰트: DM Sans + Noto Sans KR
+ */
+:root {
+  --bg-base: #f2f7f2;
+  --text-primary: #164a41;
+  --text-secondary: rgba(22, 74, 65, 0.65);
+  --text-muted: rgba(22, 74, 65, 0.4);
+  --accent-warm: #4d774e;
+  --accent-warm-end: #9dc88d;
+  --accent-cool: #f1b24a;
+  --surface: #ffffff;
+  --surface-hover: #e8f0e8;
+  --border: #c8ddc8;
+  --border-light: #b0ccb0;
+  --glass-bg: rgba(242, 247, 242, 0.92);
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 12px rgba(22, 74, 65, 0.06);
+  --gradient-warm: linear-gradient(135deg, #4d774e, #9dc88d);
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+}
+body { background: #f2f7f2; }
+body::before {
+  background: radial-gradient(circle at top left, rgba(77, 119, 78, 0.05), transparent 40%);
+}
+:root {
+  --admin-bg: #e8f0e8;
+  --sidebar-bg: linear-gradient(180deg, #164a41 0%, #1e6050 100%);
+  --content-bg: #f2f7f2;
+  --accent: #4d774e;
+  --accent-end: #9dc88d;
+  --accent-cool: #f1b24a;
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+}

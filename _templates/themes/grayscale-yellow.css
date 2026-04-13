@@ -1,0 +1,37 @@
+/* Theme: Grayscale Yellow
+ * 스타일: 모노크롬 + 형광 옐로우 포인트
+ * 참고: IKEA, National Geographic, 개발자 블로그
+ * 폰트: Space Grotesk + Noto Sans KR
+ */
+:root {
+  --bg-base: #202020;
+  --text-primary: #f5f5f5;
+  --text-secondary: rgba(245, 245, 245, 0.7);
+  --text-muted: rgba(245, 245, 245, 0.45);
+  --accent-warm: #ffd60a;
+  --accent-warm-end: #ffc107;
+  --accent-cool: #ffd60a;
+  --surface: #2a2a2a;
+  --surface-hover: #333333;
+  --border: #3f3f3f;
+  --border-light: #4a4a4a;
+  --glass-bg: rgba(32, 32, 32, 0.92);
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --gradient-warm: linear-gradient(135deg, #ffd60a, #ffc107);
+  font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
+}
+body { background: #202020; }
+body::before { background: none; }
+:root {
+  --admin-bg: #1a1a1a;
+  --sidebar-bg: linear-gradient(180deg, #111111 0%, #1a1a1a 100%);
+  --content-bg: #202020;
+  --accent: #ffd60a;
+  --accent-end: #ffc107;
+  --accent-cool: #ffd60a;
+  font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
+}

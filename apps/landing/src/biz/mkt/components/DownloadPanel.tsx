@@ -1,85 +1,89 @@
-import { adminUrl } from '../../../com/url'
+import { pageUrl } from '../../../com/url'
 
 export function DownloadPanel() {
   return (
     <section className="download-panel" id="get-started">
       <div className="section-copy">
-        <span>Quick Start</span>
-        <h2>3단계로 SaaS 런칭</h2>
-        <p>복사, 설정, 배포. 보일러플레이트를 가져다 쓰면 인프라 걱정 없이 비즈니스 로직에 집중할 수 있습니다.</p>
+        <span>AI-First Quick Start</span>
+        <h2>AI에게 말하면 SaaS가 만들어집니다</h2>
+        <p>코드를 직접 쓸 필요 없습니다. Claude Code 또는 Codex가 CLAUDE.md를 읽고 프로젝트 구조를 이해한 뒤, 세팅부터 배포까지 전부 수행합니다.</p>
       </div>
 
       <div className="install-guide">
         <div className="install-step">
           <div className="step-number">1</div>
           <div className="step-content">
-            <strong>프로젝트 복사 & 의존성 설치</strong>
+            <strong>프로젝트 클론 & AI 에이전트 실행</strong>
             <pre className="code-block"><code>{`git clone https://github.com/johunsang/octoworkers my-saas
 cd my-saas
-pnpm install`}</code></pre>
-            <p>Node.js 20+, pnpm 9.15+ 필요. 약 30초면 설치 완료.</p>
+claude`}</code></pre>
+            <p>Claude Code가 CLAUDE.md를 자동으로 읽고 프로젝트 구조를 파악합니다. Codex를 쓰려면 <code>codex</code>를 실행하세요.</p>
           </div>
         </div>
 
         <div className="install-step">
           <div className="step-number">2</div>
           <div className="step-content">
-            <strong>로컬 환경 설정</strong>
-            <pre className="code-block"><code>{`cp worker/.dev.vars.example worker/.dev.vars
-# .dev.vars에 시크릿 값 입력 (비밀번호, JWT 키 등)`}</code></pre>
-            <p>ADMIN_LOGIN_PASSWORD, ADMIN_JWT_SECRET은 필수. AI, Images, Email은 선택.</p>
+            <strong>AI에게 첫 번째 말</strong>
+            <pre className="code-block"><code>{`옥토워커스 보일러플레이트로 내 SaaS를 만들어줘.
+프로젝트명은 my-saas이고 도메인은 my-saas.com이야.
+pnpm install부터 로컬 실행까지 전부 세팅해줘.`}</code></pre>
+            <p>AI가 알아서 의존성 설치, 환경변수 생성, DB 마이그레이션, 개발 서버 실행까지 합니다.</p>
           </div>
         </div>
 
         <div className="install-step">
           <div className="step-number">3</div>
           <div className="step-content">
-            <strong>데이터베이스 초기화 & 실행</strong>
-            <pre className="code-block"><code>{`pnpm --filter @octoworkers/worker db:migrate:local
-pnpm dev`}</code></pre>
-            <p>세 개의 서버가 동시에 뜹니다:</p>
-            <div className="port-list">
-              <span>Landing → localhost:5173</span>
-              <span>Admin → localhost:5174</span>
-              <span>API → localhost:8787</span>
-            </div>
+            <strong>기능 개발도 말로</strong>
+            <pre className="code-block"><code>{`"리드에 전화번호 필드 추가해줘"
+"결제 모듈 만들어줘"
+"대시보드에 차트 추가해줘"
+"어드민에 사용자 관리 페이지 만들어줘"`}</code></pre>
+            <p>AI가 contracts.ts 타입 → 백엔드 routes/repository → 프론트 hooks/components → 테스트까지 전부 만듭니다.</p>
           </div>
         </div>
 
         <div className="install-step">
           <div className="step-number">4</div>
           <div className="step-content">
-            <strong>Cloudflare 배포</strong>
-            <pre className="code-block"><code>{`wrangler login
-pnpm deploy:prod`}</code></pre>
-            <p>프론트 빌드 + D1 마이그레이션 + Workers 배포가 한 줄에 완료됩니다.</p>
+            <strong>배포도 한 마디</strong>
+            <pre className="code-block"><code>{`"프로덕션 배포해줘"`}</code></pre>
+            <p>AI가 타입 체크 → 테스트 → 빌드 → D1 마이그레이션 → Workers 배포를 순서대로 실행합니다.</p>
+            <div className="port-list">
+              <span>Landing → my-saas.com</span>
+              <span>Admin → admin.my-saas.com</span>
+              <span>API → my-saas.com/api</span>
+            </div>
           </div>
         </div>
 
         <div className="install-step">
           <div className="step-number">5</div>
           <div className="step-content">
-            <strong>프로젝트 커스터마이징</strong>
-            <pre className="code-block"><code>{`# package.json 5곳에서 프로젝트명 교체
-# wrangler.jsonc에서 도메인, Account ID 교체
-# 불필요한 모듈 제거 (ext/, agt/, vec/ 등)`}</code></pre>
-            <p>3글자 모듈 시스템 덕분에 필요한 것만 남기고 깔끔하게 정리할 수 있습니다.</p>
+            <strong>AI가 이해하는 핵심 키워드</strong>
+            <pre className="code-block"><code>{`"3글자 모듈"  → biz/{led,med,pag}/ 패턴 이해
+"contracts.ts" → 공유 타입 자동 수정
+"prepared statement" → SQL 인젝션 방지 패턴
+"/deploy staging" → 슬래시 커맨드로 자동화
+"/review" → 현재 브랜치 코드 리뷰`}</code></pre>
+            <p>CLAUDE.md에 정의된 규칙을 AI가 따르기 때문에 일관된 코드 품질이 유지됩니다.</p>
           </div>
         </div>
       </div>
 
       <div className="demo-links">
-        <a href={adminUrl()} className="demo-link demo-admin">
-          <strong>Admin Console 데모</strong>
-          <span>리드 CRM, 미디어, 이메일, CMS를 직접 체험하세요</span>
+        <a href={pageUrl('ai-dev-guide')} className="demo-link demo-admin">
+          <strong>AI 개발 가이드</strong>
+          <span>서브에이전트, Hooks, MCP, Skills, 프롬프트 작성법</span>
         </a>
-        <a href="/api/public/pages" className="demo-link demo-api">
-          <strong>API 엔드포인트</strong>
-          <span>공개 API 응답을 브라우저에서 바로 확인하세요</span>
+        <a href={pageUrl('guide')} className="demo-link demo-api">
+          <strong>Cloudflare 실전 가이드</strong>
+          <span>가입부터 배포까지 14단계 발표자료</span>
         </a>
-        <a href="https://github.com/johunsang/octoworkers" target="_blank" rel="noreferrer" className="demo-link demo-github">
-          <strong>GitHub Repository</strong>
-          <span>소스 코드, 이슈, 문서를 확인하세요</span>
+        <a href={pageUrl('pricing-guide')} className="demo-link demo-github">
+          <strong>요금제 완벽 가이드</strong>
+          <span>Workers, D1, R2, AI 요금 상세 + AWS 비교</span>
         </a>
       </div>
     </section>

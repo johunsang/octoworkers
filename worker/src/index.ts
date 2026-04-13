@@ -69,6 +69,27 @@ export function createApp() {
     }
   })
 
+  // SEO: robots.txt
+  app.get('/robots.txt', (c) => {
+    const domain = c.env.APP_DOMAIN ?? 'octoworkers.com'
+    return c.text(`User-agent: *\nAllow: /\nDisallow: /api/admin/\nDisallow: /admin/\n\nSitemap: https://${domain}/sitemap.xml`)
+  })
+
+  // SEO: sitemap.xml
+  app.get('/sitemap.xml', async (c) => {
+    const domain = c.env.APP_DOMAIN ?? 'octoworkers.com'
+    const saas = c.env.SAAS_DOMAIN ?? `app.${domain}`
+    let urls = `  <url><loc>https://${domain}</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n`
+    try {
+      const { results } = await c.env.DB.prepare("SELECT slug, updated_at FROM pages WHERE status = 'published' ORDER BY updated_at DESC").all<{ slug: string; updated_at: string }>()
+      for (const p of results) {
+        const lastmod = p.updated_at?.split(' ')[0] ?? ''
+        urls += `  <url><loc>https://${saas}/${p.slug}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.8</priority></url>\n`
+      }
+    } catch { /* ignore */ }
+    return c.body(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}</urlset>`, 200, { 'Content-Type': 'application/xml' })
+  })
+
   // 공개 API (인증/역할 불필요)
   app.route('/api/health', healthRoutes)
   app.route('/api/auth', authRoutes)

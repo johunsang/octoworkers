@@ -1,0 +1,46 @@
+/* Theme: Terminal Mono
+ * 스타일: 개발자/터미널/해커 감성
+ * 참고: Warp, GitHub CLI, Vercel Terminal
+ * 폰트: JetBrains Mono + IBM Plex Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #0d1117;
+  --text-primary: #c9d1d9;
+  --text-secondary: rgba(201, 209, 217, 0.7);
+  --text-muted: rgba(201, 209, 217, 0.45);
+  --accent-warm: #39d353;
+  --accent-warm-end: #26a641;
+  --accent-cool: #58a6ff;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(48, 54, 61, 0.8);
+  --border-light: rgba(48, 54, 61, 1);
+  --glass-bg: rgba(13, 17, 23, 0.9);
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --gradient-warm: linear-gradient(135deg, #39d353, #26a641);
+  font-family: "JetBrains Mono", "IBM Plex Sans KR", monospace;
+}
+
+body { background: #0d1117; }
+body::before {
+  background:
+    radial-gradient(circle at top left, rgba(57, 211, 83, 0.08), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(88, 166, 255, 0.06), transparent 30%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #010409;
+  --sidebar-bg: linear-gradient(180deg, #0d1117 0%, #010409 100%);
+  --content-bg: #0d1117;
+  --accent: #39d353;
+  --accent-end: #26a641;
+  --accent-cool: #58a6ff;
+  font-family: "JetBrains Mono", "IBM Plex Sans KR", monospace;
+}

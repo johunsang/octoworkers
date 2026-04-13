@@ -1,0 +1,37 @@
+/* Theme: Claymorphism
+ * 스타일: 클레이/3D 카드, 장난스러운 입체감
+ * 참고: Figma, Pitch, 3D SaaS
+ * 폰트: Nunito + Noto Sans KR
+ */
+:root {
+  --bg-base: #f0f0f3;
+  --text-primary: #2b2b3d;
+  --text-secondary: rgba(43, 43, 61, 0.65);
+  --text-muted: rgba(43, 43, 61, 0.4);
+  --accent-warm: #ff6b81;
+  --accent-warm-end: #ff9ff3;
+  --accent-cool: #48dbfb;
+  --surface: #ffffff;
+  --surface-hover: #f8f8fb;
+  --border: rgba(0, 0, 0, 0.04);
+  --border-light: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --radius-lg: 30px;
+  --radius-md: 22px;
+  --radius-sm: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.08), inset 0 -4px 8px rgba(0, 0, 0, 0.04);
+  --gradient-warm: linear-gradient(135deg, #ff6b81, #ff9ff3);
+  font-family: "Nunito", "Noto Sans KR", sans-serif;
+}
+body { background: #f0f0f3; }
+body::before { background: linear-gradient(180deg, #f0f0f3 0%, #e8e8ef 100%); }
+:root {
+  --admin-bg: #f0f0f3;
+  --sidebar-bg: linear-gradient(180deg, #2b2b3d 0%, #3d3d56 100%);
+  --content-bg: #f0f0f3;
+  --accent: #ff6b81;
+  --accent-end: #ff9ff3;
+  --accent-cool: #48dbfb;
+  font-family: "Nunito", "Noto Sans KR", sans-serif;
+}

@@ -1,0 +1,44 @@
+/* Theme: Soft Pastel
+ * 스타일: 파스텔 그래디언트, 밝고 친근함
+ * 참고: Notion AI, Loom, Canva, Monday.com
+ * 폰트: Poppins + Noto Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #ffffff;
+  --text-primary: #1f1f33;
+  --text-secondary: rgba(31, 31, 51, 0.65);
+  --text-muted: rgba(31, 31, 51, 0.45);
+  --accent-warm: #7c5cfc;
+  --accent-warm-end: #f472b6;
+  --accent-cool: #38bdf8;
+  --surface: rgba(124, 92, 252, 0.04);
+  --surface-hover: rgba(124, 92, 252, 0.08);
+  --border: #e9e5f5;
+  --border-light: #ded8f0;
+  --glass-bg: rgba(248, 247, 255, 0.9);
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 16px rgba(124, 92, 252, 0.1);
+  --gradient-warm: linear-gradient(135deg, #7c5cfc 0%, #f472b6 50%, #38bdf8 100%);
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+}
+
+body { background: #ffffff; }
+body::before {
+  background: linear-gradient(180deg, #f8f7ff 0%, #fff1f8 50%, #f0f9ff 100%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #f8f7ff;
+  --sidebar-bg: linear-gradient(180deg, #ffffff 0%, #f8f7ff 100%);
+  --content-bg: #faf9ff;
+  --accent: #7c5cfc;
+  --accent-end: #f472b6;
+  --accent-cool: #38bdf8;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+}

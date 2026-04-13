@@ -1,0 +1,48 @@
+/* Theme: Glow Aurora
+ * 스타일: 글로우 효과 + 오로라 그라디언트
+ * 참고: Supabase, Planetscale, Resend 2026
+ * 폰트: Plus Jakarta Sans + Noto Sans KR
+ * 트렌드: 2026 SaaS 글로우/발광 효과 핵심 트렌드
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #050510;
+  --text-primary: #f0f0f8;
+  --text-secondary: rgba(240, 240, 248, 0.7);
+  --text-muted: rgba(240, 240, 248, 0.45);
+  --accent-warm: #667eea;
+  --accent-warm-end: #764ba2;
+  --accent-cool: #43e97b;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --border: rgba(102, 126, 234, 0.15);
+  --border-light: rgba(102, 126, 234, 0.25);
+  --glass-bg: rgba(5, 5, 16, 0.8);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 8px 40px rgba(102, 126, 234, 0.12), 0 0 80px rgba(118, 75, 162, 0.06);
+  --gradient-warm: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+}
+
+body { background: #050510; }
+body::before {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(102, 126, 234, 0.2), transparent 50%),
+    radial-gradient(ellipse at 80% 0%, rgba(67, 233, 123, 0.12), transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(118, 75, 162, 0.15), transparent 50%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #08081a;
+  --sidebar-bg: linear-gradient(180deg, #0a0a20 0%, #08081a 100%);
+  --content-bg: #0a0a18;
+  --accent: #667eea;
+  --accent-end: #764ba2;
+  --accent-cool: #43e97b;
+  font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+}

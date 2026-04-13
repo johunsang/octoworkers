@@ -1,0 +1,46 @@
+/* Theme: Stripe Gradient
+ * 스타일: 생동감 있는 그라디언트
+ * 참고: Stripe, Lemon Squeezy, Framer
+ * 폰트: Plus Jakarta Sans + Noto Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #0a0a1a;
+  --text-primary: #f8f8fc;
+  --text-secondary: rgba(248, 248, 252, 0.72);
+  --text-muted: rgba(248, 248, 252, 0.5);
+  --accent-warm: #635bff;
+  --accent-warm-end: #00d4aa;
+  --accent-cool: #80e9ff;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-hover: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.15);
+  --glass-bg: rgba(10, 10, 26, 0.8);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+  --shadow-card: 0 24px 64px rgba(99, 91, 255, 0.12), 0 8px 24px rgba(0, 0, 0, 0.2);
+  --gradient-warm: linear-gradient(135deg, #635bff, #00d4aa);
+  font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+}
+
+body { background: #0a0a1a; }
+body::before {
+  background:
+    radial-gradient(ellipse at top left, rgba(99, 91, 255, 0.25), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(0, 212, 170, 0.15), transparent 50%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #0d0d20;
+  --sidebar-bg: linear-gradient(180deg, #111133 0%, #0d0d20 100%);
+  --content-bg: #0f0f24;
+  --accent: #635bff;
+  --accent-end: #00d4aa;
+  --accent-cool: #80e9ff;
+  font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+}

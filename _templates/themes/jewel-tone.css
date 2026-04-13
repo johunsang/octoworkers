@@ -1,0 +1,41 @@
+/* Theme: Jewel Tone
+ * 스타일: 보석 톤 (사파이어, 루비, 라벤더)
+ * 참고: 럭셔리 SaaS, 프리미엄 대시보드
+ * 폰트: Playfair Display (제목) + Inter (본문) + Noto Sans KR
+ */
+:root {
+  --bg-base: #0b1628;
+  --text-primary: #e8e0f0;
+  --text-secondary: rgba(232, 224, 240, 0.7);
+  --text-muted: rgba(232, 224, 240, 0.45);
+  --accent-warm: #d85c27;
+  --accent-warm-end: #e8944a;
+  --accent-cool: #b999be;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(185, 153, 190, 0.15);
+  --border-light: rgba(185, 153, 190, 0.25);
+  --glass-bg: rgba(11, 22, 40, 0.85);
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --gradient-warm: linear-gradient(135deg, #d85c27, #b999be);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+body { background: #0b1628; }
+body::before {
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(216, 92, 39, 0.1), transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(185, 153, 190, 0.08), transparent 50%);
+}
+:root {
+  --admin-bg: #081020;
+  --sidebar-bg: linear-gradient(180deg, #14213d 0%, #0b1628 100%);
+  --content-bg: #0b1628;
+  --accent: #d85c27;
+  --accent-end: #e8944a;
+  --accent-cool: #b999be;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

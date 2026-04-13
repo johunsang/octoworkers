@@ -1,0 +1,41 @@
+/* Theme: Fresh Modern
+ * 스타일: 터콰이즈 + 핑크 대비, 생생한 현대성
+ * 참고: 스타트업, 소셜 SaaS
+ * 폰트: Plus Jakarta Sans + Noto Sans KR
+ */
+:root {
+  --bg-base: #fafbff;
+  --text-primary: #1d1145;
+  --text-secondary: rgba(29, 17, 69, 0.65);
+  --text-muted: rgba(29, 17, 69, 0.4);
+  --accent-warm: #e76d89;
+  --accent-warm-end: #f2a1a1;
+  --accent-cool: #0db4b9;
+  --surface: #ffffff;
+  --surface-hover: #f5f3ff;
+  --border: #e8e3f5;
+  --border-light: #d6cef0;
+  --glass-bg: rgba(250, 251, 255, 0.92);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 6px 20px rgba(29, 17, 69, 0.06);
+  --gradient-warm: linear-gradient(135deg, #e76d89, #0db4b9);
+  font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+}
+body { background: #fafbff; }
+body::before {
+  background:
+    radial-gradient(circle at top left, rgba(231, 109, 137, 0.06), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(13, 180, 185, 0.06), transparent 40%);
+}
+:root {
+  --admin-bg: #f5f3ff;
+  --sidebar-bg: linear-gradient(180deg, #1d1145 0%, #2d2065 100%);
+  --content-bg: #fafbff;
+  --accent: #e76d89;
+  --accent-end: #f2a1a1;
+  --accent-cool: #0db4b9;
+  font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+}

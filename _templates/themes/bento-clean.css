@@ -1,0 +1,43 @@
+/* Theme: Bento Clean
+ * 스타일: 벤토 그리드 + 클린 화이트
+ * 참고: Apple, shadcn/ui, Cal.com, Supabase Dashboard
+ * 폰트: Geist Sans (Inter 대체) + Noto Sans KR
+ * 트렌드: 2026 벤토 그리드 모듈식 레이아웃 핵심 트렌드
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #09090b;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent-warm: #fafafa;
+  --accent-warm-end: #e4e4e7;
+  --accent-cool: #3b82f6;
+  --surface: #18181b;
+  --surface-hover: #27272a;
+  --border: #27272a;
+  --border-light: #3f3f46;
+  --glass-bg: rgba(9, 9, 11, 0.9);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --gradient-warm: linear-gradient(135deg, #fafafa, #e4e4e7);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+body { background: #09090b; }
+body::before { background: none; }
+
+/* === Admin === */
+:root {
+  --admin-bg: #09090b;
+  --sidebar-bg: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+  --content-bg: #09090b;
+  --accent: #fafafa;
+  --accent-end: #e4e4e7;
+  --accent-cool: #3b82f6;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

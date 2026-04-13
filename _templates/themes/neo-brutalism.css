@@ -1,0 +1,42 @@
+/* Theme: Neo Brutalism
+ * 스타일: 대담한 테두리, 하드 섀도우, 밝은 색상
+ * 참고: Gumroad, Lemon Squeezy, Figma 캠페인
+ * 폰트: Space Grotesk + Noto Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #fffdf0;
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(26, 26, 26, 0.7);
+  --text-muted: rgba(26, 26, 26, 0.5);
+  --accent-warm: #ff6b35;
+  --accent-warm-end: #ffd166;
+  --accent-cool: #06d6a0;
+  --surface: #ffffff;
+  --surface-hover: #fff8e0;
+  --border: #1a1a1a;
+  --border-light: #333333;
+  --glass-bg: rgba(255, 253, 240, 0.95);
+  --radius-lg: 2px;
+  --radius-md: 2px;
+  --radius-sm: 0px;
+  --radius-pill: 2px;
+  --shadow-card: 4px 4px 0px #1a1a1a;
+  --gradient-warm: linear-gradient(135deg, #ff6b35, #ffd166);
+  font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
+}
+
+body { background: #fffdf0; }
+body::before { background: none; }
+
+/* === Admin === */
+:root {
+  --admin-bg: #fffdf0;
+  --sidebar-bg: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+  --content-bg: #fff8e0;
+  --accent: #ff6b35;
+  --accent-end: #ffd166;
+  --accent-cool: #06d6a0;
+  font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
+}

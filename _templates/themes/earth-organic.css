@@ -1,0 +1,46 @@
+/* Theme: Earth Organic
+ * 스타일: 따뜻한 어스 톤, 자연스러운 감성
+ * 참고: Basecamp, Squarespace, Framer 쇼케이스
+ * 폰트: DM Sans + Noto Sans KR (본문), DM Serif Display (제목)
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #faf7f2;
+  --text-primary: #2c2418;
+  --text-secondary: rgba(44, 36, 24, 0.65);
+  --text-muted: rgba(44, 36, 24, 0.45);
+  --accent-warm: #c2410c;
+  --accent-warm-end: #ea580c;
+  --accent-cool: #3d8b37;
+  --surface: #ffffff;
+  --surface-hover: #f5f0e8;
+  --border: #e7dfd3;
+  --border-light: #d4c9b8;
+  --glass-bg: rgba(250, 247, 242, 0.92);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 12px rgba(44, 36, 24, 0.08);
+  --gradient-warm: linear-gradient(135deg, #c2410c, #ea580c);
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+}
+
+body { background: #faf7f2; }
+body::before {
+  background:
+    radial-gradient(circle at top left, rgba(194, 65, 12, 0.06), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(61, 139, 55, 0.04), transparent 40%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #f5f0e8;
+  --sidebar-bg: linear-gradient(180deg, #2c2418 0%, #3d3224 100%);
+  --content-bg: #faf7f2;
+  --accent: #c2410c;
+  --accent-end: #ea580c;
+  --accent-cool: #3d8b37;
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+}

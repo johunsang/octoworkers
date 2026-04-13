@@ -1,0 +1,39 @@
+/* Theme: Sorbet
+ * 스타일: 크림/피치/민트 소르베 컬러
+ * 참고: 식품 배송, 라이프스타일 앱
+ * 폰트: DM Sans + Noto Sans KR
+ */
+:root {
+  --bg-base: #fef9f3;
+  --text-primary: #2d1f10;
+  --text-secondary: rgba(45, 31, 16, 0.65);
+  --text-muted: rgba(45, 31, 16, 0.4);
+  --accent-warm: #dc7027;
+  --accent-warm-end: #ea8a81;
+  --accent-cool: #b6c48e;
+  --surface: #ffffff;
+  --surface-hover: #fef3e8;
+  --border: #f0e0cc;
+  --border-light: #e5d3bc;
+  --glass-bg: rgba(254, 249, 243, 0.92);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 16px rgba(220, 112, 39, 0.08);
+  --gradient-warm: linear-gradient(135deg, #dc7027, #ea8a81);
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+}
+body { background: #fef9f3; }
+body::before {
+  background: radial-gradient(circle at top, rgba(220, 112, 39, 0.05), transparent 50%);
+}
+:root {
+  --admin-bg: #fef3e8;
+  --sidebar-bg: linear-gradient(180deg, #2d1f10 0%, #4a3520 100%);
+  --content-bg: #fef9f3;
+  --accent: #dc7027;
+  --accent-end: #ea8a81;
+  --accent-cool: #b6c48e;
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+}

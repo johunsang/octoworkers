@@ -348,13 +348,82 @@ GitHub Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
 | `CLOUDFLARE_IMAGES_API_TOKEN` | Images API 토큰 | 이미지 사용 시 |
 | `RESEND_API_KEY` | Resend 이메일 API 키 | 이메일 사용 시 |
 
+## 디자인 테마 시스템
+
+`_templates/themes/` 폴더에 30개 CSS 테마 프리셋이 있다. 사용자가 "테마를 X로 바꿔줘"라고 요청하면 해당 CSS 파일을 읽고 `apps/landing/src/styles.css`와 `apps/admin/src/styles.css`의 `:root` CSS 변수를 교체한다.
+
+### 다크 테마 (11개)
+
+| 테마 | 스타일 | 참고 |
+| --- | --- | --- |
+| `dark-glass` | 다크 글래스모피즘 (기본값) | Linear, Raycast |
+| `stripe-gradient` | 그라디언트 바이브런트 | Stripe, Framer |
+| `terminal-mono` | 터미널/모노스페이스 | GitHub CLI, Warp |
+| `neon-cyber` | 네온 사이버펑크 | PlanetScale, Railway |
+| `glow-aurora` | 글로우 오로라 | Supabase, Resend |
+| `bento-clean` | 벤토 그리드 다크 | shadcn/ui, Cal.com |
+| `synthwave` | 80년대 신스웨이브 | 레트로 게이밍 |
+| `mesh-gradient` | 멀티컬러 메시 | Apple Music |
+| `infrared-purple` | 퍼플+레드 에너지 | 크리에이티브 도구 |
+| `jewel-tone` | 보석 톤 럭셔리 | 프리미엄 SaaS |
+| `grayscale-yellow` | 모노크롬+옐로우 | IKEA, 개발자 |
+
+### 라이트 테마 (19개)
+
+| 테마 | 스타일 | 참고 |
+| --- | --- | --- |
+| `linear-minimal` | 밝은 미니멀 | Notion, Vercel |
+| `soft-pastel` | 파스텔 그래디언트 | Canva, Monday.com |
+| `corporate-blue` | 기업형 블루 | Salesforce, Datadog |
+| `earth-organic` | 어스 톤 오가닉 | Basecamp |
+| `neo-brutalism` | 네오 브루탈리즘 | Gumroad |
+| `retro-digital` | 레트로 디지털 | Clerk, Deno |
+| `bold-serif` | 대형 세리프 | Pitch, Webflow |
+| `split-contrast` | 스플릿 고대비 | Loom, Notion |
+| `organic-blob` | 유기적 Blob | Notion AI, Descript |
+| `neumorphism` | 소프트 UI 3D | Apple 설정 |
+| `claymorphism` | 클레이 3D | Figma, Pitch |
+| `outline-skeletal` | 아웃라인만 | 와이어프레임 |
+| `mint-fresh` | 민트 신선함 | 웰니스 앱 |
+| `fresh-modern` | 터콰이즈+핑크 | 소셜 SaaS |
+| `sorbet` | 피치/크림 | 라이프스타일 |
+| `cloud-dancer` | Pantone 2026 | Apple 클린 |
+| `green-eco` | 친환경 그린 | ESG 플랫폼 |
+| `dopamine` | 고채도 에너지 | Miro, Figma |
+| `frost-ui` | 서리/얼음 블루 | Windows Fluent |
+
+### 테마 적용 방법
+
+1. `_templates/themes/{테마명}.css` 파일을 읽는다
+2. `apps/landing/src/styles.css`의 `:root` 변수를 교체한다
+3. `apps/admin/src/styles.css`의 `:root` 변수를 교체한다
+4. `body` 배경과 `body::before` 그라디언트도 교체한다
+5. Google Fonts import가 필요하면 `index.html`에 추가한다
+
+## SaaS 앱 가이드 페이지
+
+`app.octoworkers.com`에 CMS 페이지로 발행된 가이드 목록:
+
+| slug | 제목 |
+| --- | --- |
+| `ai-dev-guide` | AI 개발 가이드 (서브에이전트, Hooks, MCP, Skills) |
+| `guide` | Cloudflare Workers 실전 가이드 (14단계) |
+| `pricing-guide` | Cloudflare 요금제 완벽 가이드 |
+| `domain-setup` | 도메인 설정 가이드 |
+| `auth-setup` | 로그인 & 인증 설정 가이드 |
+| `ai-setup` | AI 기능 설정 가이드 |
+| `email-setup` | 이메일 설정 가이드 |
+| `db-rag-guide` | D1 데이터베이스 & RAG 가이드 |
+| `design-guide` | 디자인 테마 프리셋 (15개) |
+
 ## 문서 우선순위
 
 1. `AGENTS.md`, `CLAUDE.md` — 에이전트 작업 가이드 (항상 동일 유지, 양방향 동기화)
 2. 서브디렉토리 `CLAUDE.md`/`AGENTS.md` — 각 디렉토리 상세
-3. `_templates/README.md` — 모듈 생성 가이드
-4. `docs/01~04-*.md` — 운영 문서
-5. `README.md` — 프로젝트 소개
+3. `_templates/themes/README.md` — 테마 프리셋 가이드
+4. `_templates/README.md` — 모듈 생성 가이드
+5. `docs/01~04-*.md` — 운영 문서
+6. `README.md` — 프로젝트 소개
 
 ## Daily 기록 규칙
 

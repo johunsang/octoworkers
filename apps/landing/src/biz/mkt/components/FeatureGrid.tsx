@@ -1,19 +1,19 @@
 const items = [
   {
-    title: 'Hono API + D1',
-    description: '타입 세이프 REST API와 SQLite 기반 D1 데이터베이스. Zod 검증, prepared statement, 마이그레이션 자동화까지.',
+    title: 'AI에게 말하면 개발 완료',
+    description: 'Claude Code 또는 Codex가 CLAUDE.md를 읽고 프로젝트를 이해합니다. 한국어로 기능을 요청하면 타입, 백엔드, 프론트, 테스트까지 자동 생성.',
   },
   {
-    title: '어드민 콘솔',
-    description: '리드 CRM, 미디어 관리, 사이트 설정, 이메일 발송, CMS 페이지 관리를 하나의 대시보드에서.',
+    title: '서브에이전트 & Hooks',
+    description: 'Explore, Plan, Code Reviewer 서브에이전트로 작업 위임. Hooks로 자동 포맷팅, 파일 보호, 알림 설정.',
   },
   {
-    title: 'AI + 시맨틱 검색',
-    description: 'Workers AI와 AI Gateway로 카피 생성, Vectorize로 시맨틱 검색. 토글 하나로 켜고 끕니다.',
+    title: 'CLAUDE.md 문서 시스템',
+    description: '루트 + 서브디렉토리 CLAUDE.md로 AI가 규칙을 이해. .claude/rules/, .claude/skills/로 프로젝트별 자동화 설정.',
   },
   {
-    title: '원클릭 배포',
-    description: 'GitHub Actions로 staging/production 자동 배포. D1 마이그레이션, 프론트 빌드, Workers 배포가 한 번에.',
+    title: '/deploy 한 마디로 배포',
+    description: '슬래시 커맨드로 빌드 → 테스트 → D1 마이그레이션 → Workers 배포 자동화. /review, /fix-issue, /scaffold 지원.',
   },
 ]
 

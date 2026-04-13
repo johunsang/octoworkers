@@ -1,0 +1,37 @@
+/* Theme: Outline Skeletal
+ * 스타일: 선/아웃라인만으로 구성, 미니멀 극한
+ * 참고: Notion 초기, 와이어프레임 미학
+ * 폰트: IBM Plex Sans + Noto Sans KR
+ */
+:root {
+  --bg-base: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: rgba(17, 17, 17, 0.6);
+  --text-muted: rgba(17, 17, 17, 0.35);
+  --accent-warm: #111111;
+  --accent-warm-end: #444444;
+  --accent-cool: #111111;
+  --surface: transparent;
+  --surface-hover: rgba(0, 0, 0, 0.03);
+  --border: #d4d4d4;
+  --border-light: #e5e5e5;
+  --glass-bg: rgba(255, 255, 255, 0.98);
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
+  --radius-pill: 0px;
+  --shadow-card: none;
+  --gradient-warm: linear-gradient(135deg, #111111, #444444);
+  font-family: "IBM Plex Sans", "Noto Sans KR", sans-serif;
+}
+body { background: #ffffff; }
+body::before { background: none; }
+:root {
+  --admin-bg: #ffffff;
+  --sidebar-bg: linear-gradient(180deg, #111111 0%, #222222 100%);
+  --content-bg: #fafafa;
+  --accent: #111111;
+  --accent-end: #444444;
+  --accent-cool: #111111;
+  font-family: "IBM Plex Sans", "Noto Sans KR", sans-serif;
+}

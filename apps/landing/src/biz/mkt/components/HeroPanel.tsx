@@ -1,4 +1,4 @@
-import { adminUrl } from '../../../com/url'
+import { pageUrl } from '../../../com/url'
 
 type HeroPanelProps = {
   metrics: Array<{ label: string; value: number | string }>
@@ -9,19 +9,19 @@ export function HeroPanel({ metrics, loading }: HeroPanelProps) {
   return (
     <section className="hero-panel">
       <div className="hero-copy">
-        <span>Cloudflare Workers SaaS Boilerplate</span>
+        <span>AI-First SaaS Boilerplate</span>
         <h1>옥토워커스</h1>
-        <p>랜딩, 어드민, API, DB, 미디어, AI, 이메일, CMS를 하나의 에지 런타임에서 운영하세요. 복사해서 바로 SaaS를 시작할 수 있습니다.</p>
+        <p>Claude Code 또는 Codex에게 말하면 SaaS가 만들어집니다. CLAUDE.md 기반 에이전트 문서 시스템으로 AI가 코드 작성부터 배포까지 전부 수행합니다.</p>
         <div className="hero-actions">
-          <a href="#get-started">Quick Start</a>
-          <a href={adminUrl()}>Admin Demo</a>
+          <a href="#get-started">AI로 시작하기</a>
+          <a href={pageUrl('ai-dev-guide')}>AI 개발 가이드</a>
           <a href="https://github.com/johunsang/octoworkers" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </div>
       <div className="hero-metrics">
         <header>
-          <strong>옥토워커스</strong>
-          <p>{loading ? 'Loading...' : 'Hono + Vite + D1 + AI Gateway'}</p>
+          <strong>AI로 개발하는 SaaS</strong>
+          <p>{loading ? 'Loading...' : 'Claude Code + Codex + Hono + D1'}</p>
         </header>
         <div className="metric-grid">
           {metrics.map((metric) => (

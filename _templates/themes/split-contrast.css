@@ -1,0 +1,43 @@
+/* Theme: Split Contrast
+ * 스타일: 스플릿 스크린 + 고대비 다크/라이트
+ * 참고: Loom, Notion, Webflow Split Layout
+ * 폰트: Satoshi (또는 Inter) + Noto Sans KR
+ * 트렌드: 2026 스플릿 레이아웃 + 극한 대비 트렌드
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: rgba(17, 24, 39, 0.6);
+  --text-muted: rgba(17, 24, 39, 0.4);
+  --accent-warm: #111827;
+  --accent-warm-end: #374151;
+  --accent-cool: #6366f1;
+  --surface: #ffffff;
+  --surface-hover: #f9fafb;
+  --border: #e5e7eb;
+  --border-light: #d1d5db;
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --gradient-warm: linear-gradient(135deg, #111827, #374151);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+body { background: #f3f4f6; }
+body::before { background: none; }
+
+/* === Admin === */
+:root {
+  --admin-bg: #f9fafb;
+  --sidebar-bg: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+  --content-bg: #f3f4f6;
+  --accent: #111827;
+  --accent-end: #374151;
+  --accent-cool: #6366f1;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

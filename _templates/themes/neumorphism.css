@@ -1,0 +1,37 @@
+/* Theme: Neumorphism
+ * 스타일: 소프트 UI, 부드러운 돌출 3D 효과
+ * 참고: Apple 설정, 스마트홈 대시보드
+ * 폰트: Inter + Noto Sans KR
+ */
+:root {
+  --bg-base: #e0e5ec;
+  --text-primary: #2d3436;
+  --text-secondary: rgba(45, 52, 54, 0.65);
+  --text-muted: rgba(45, 52, 54, 0.4);
+  --accent-warm: #6c5ce7;
+  --accent-warm-end: #a29bfe;
+  --accent-cool: #0984e3;
+  --surface: #e0e5ec;
+  --surface-hover: #d5dbe3;
+  --border: transparent;
+  --border-light: transparent;
+  --glass-bg: #e0e5ec;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+  --shadow-card: 8px 8px 16px rgba(0, 0, 0, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.7);
+  --gradient-warm: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+body { background: #e0e5ec; }
+body::before { background: none; }
+:root {
+  --admin-bg: #e0e5ec;
+  --sidebar-bg: linear-gradient(180deg, #d5dbe3 0%, #e0e5ec 100%);
+  --content-bg: #e0e5ec;
+  --accent: #6c5ce7;
+  --accent-end: #a29bfe;
+  --accent-cool: #0984e3;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

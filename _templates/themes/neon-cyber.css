@@ -1,0 +1,46 @@
+/* Theme: Neon Cyber
+ * 스타일: 사이버펑크, 네온 글로우
+ * 참고: PlanetScale, Railway, Neon Database, Warp
+ * 폰트: Outfit + Noto Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #0a0a0f;
+  --text-primary: #e4e4e7;
+  --text-secondary: rgba(228, 228, 231, 0.7);
+  --text-muted: rgba(228, 228, 231, 0.45);
+  --accent-warm: #00e5ff;
+  --accent-warm-end: #bf5af2;
+  --accent-cool: #00e5ff;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --border: #2a2a3c;
+  --border-light: #3a3a50;
+  --glass-bg: rgba(10, 10, 15, 0.85);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.08);
+  --gradient-warm: linear-gradient(135deg, #00e5ff, #bf5af2);
+  font-family: "Outfit", "Noto Sans KR", sans-serif;
+}
+
+body { background: #0a0a0f; }
+body::before {
+  background:
+    radial-gradient(ellipse at top left, rgba(0, 229, 255, 0.12), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(191, 90, 242, 0.1), transparent 50%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #08080d;
+  --sidebar-bg: linear-gradient(180deg, #0f0f18 0%, #08080d 100%);
+  --content-bg: #0a0a12;
+  --accent: #00e5ff;
+  --accent-end: #bf5af2;
+  --accent-cool: #00e5ff;
+  font-family: "Outfit", "Noto Sans KR", sans-serif;
+}

@@ -22,21 +22,34 @@ export function PageListView() {
           <a href="https://github.com/johunsang/octoworkers" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </nav>
+
       <header className="pagelist-header">
         <span className="pagelist-badge">SaaS CMS</span>
         <h1>옥토워커스 페이지</h1>
         <p>마크다운으로 작성한 CMS 페이지가 D1 데이터베이스에서 실시간으로 서빙됩니다.</p>
+        <div className="pagelist-meta">
+          <span>{pages.length} pages published</span>
+        </div>
       </header>
+
       {loading && <p className="pagelist-loading">Loading...</p>}
+
       <div className="pagelist-grid">
-        {pages.map((page) => (
+        {pages.map((page, idx) => (
           <a key={page.id} href={pageUrl(page.slug)} className="pagelist-card">
-            <h2>{page.title}</h2>
-            <span className="pagelist-slug">/{page.slug}</span>
-            {page.publishedAt && <time>{new Date(page.publishedAt).toLocaleDateString('ko-KR')}</time>}
+            <div className="pagelist-card-number">{String(idx + 1).padStart(2, '0')}</div>
+            <div className="pagelist-card-body">
+              <h2>{page.title}</h2>
+              <span className="pagelist-slug">/{page.slug}</span>
+            </div>
+            <div className="pagelist-card-footer">
+              {page.publishedAt && <time>{new Date(page.publishedAt).toLocaleDateString('ko-KR')}</time>}
+              <span className="pagelist-arrow">&rarr;</span>
+            </div>
           </a>
         ))}
       </div>
+
       <footer className="pagelist-footer">
         <a href={homeUrl()}>Landing</a>
         <a href={adminUrl()}>Admin Console</a>

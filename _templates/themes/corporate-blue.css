@@ -1,0 +1,45 @@
+/* Theme: Corporate Blue
+ * 스타일: 기업형, 신뢰감 있는 블루
+ * 참고: Stripe Dashboard, Salesforce, Datadog, HubSpot
+ * 폰트: Inter + Noto Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: rgba(15, 23, 42, 0.65);
+  --text-muted: rgba(15, 23, 42, 0.45);
+  --accent-warm: #2563eb;
+  --accent-warm-end: #1d4ed8;
+  --accent-cool: #3b82f6;
+  --surface: #f8fafc;
+  --surface-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --border-light: #cbd5e1;
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --gradient-warm: linear-gradient(135deg, #2563eb, #1d4ed8);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+body { background: #ffffff; }
+body::before {
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.05), transparent 50%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #f8fafc;
+  --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  --content-bg: #f1f5f9;
+  --accent: #2563eb;
+  --accent-end: #1d4ed8;
+  --accent-cool: #3b82f6;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

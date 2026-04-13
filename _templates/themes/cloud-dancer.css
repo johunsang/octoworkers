@@ -1,0 +1,37 @@
+/* Theme: Cloud Dancer
+ * 스타일: Pantone 2026 올해의 색상, 부드러운 화이트
+ * 참고: Pantone Cloud Dancer, Apple 클린
+ * 폰트: Inter + Noto Sans KR
+ */
+:root {
+  --bg-base: #f8f8f4;
+  --text-primary: #2c2c2e;
+  --text-secondary: rgba(44, 44, 46, 0.6);
+  --text-muted: rgba(44, 44, 46, 0.38);
+  --accent-warm: #2c2c2e;
+  --accent-warm-end: #4a4a4c;
+  --accent-cool: #007aff;
+  --surface: #ffffff;
+  --surface-hover: #f2f2ed;
+  --border: #e6e6e0;
+  --border-light: #d9d9d3;
+  --glass-bg: rgba(248, 248, 244, 0.95);
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --gradient-warm: linear-gradient(135deg, #2c2c2e, #4a4a4c);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+body { background: #f8f8f4; }
+body::before { background: none; }
+:root {
+  --admin-bg: #f2f2ed;
+  --sidebar-bg: linear-gradient(180deg, #2c2c2e 0%, #3a3a3c 100%);
+  --content-bg: #f8f8f4;
+  --accent: #2c2c2e;
+  --accent-end: #4a4a4c;
+  --accent-cool: #007aff;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

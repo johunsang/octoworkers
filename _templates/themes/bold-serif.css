@@ -1,0 +1,45 @@
+/* Theme: Bold Serif
+ * 스타일: 대형 세리프 헤드라인 + 표현적 팔레트
+ * 참고: Pitch, Webflow, Medium, Substack
+ * 폰트: DM Serif Display (제목) + Inter (본문) + Noto Sans KR
+ * 트렌드: 2026 표현적 타이포그래피 핵심 트렌드
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #fffbf5;
+  --text-primary: #1a1311;
+  --text-secondary: rgba(26, 19, 17, 0.65);
+  --text-muted: rgba(26, 19, 17, 0.4);
+  --accent-warm: #e63946;
+  --accent-warm-end: #ff6b6b;
+  --accent-cool: #457b9d;
+  --surface: #ffffff;
+  --surface-hover: #fef7ed;
+  --border: #ede5d8;
+  --border-light: #d4c9b8;
+  --glass-bg: rgba(255, 251, 245, 0.92);
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+  --shadow-card: 0 2px 8px rgba(26, 19, 17, 0.06);
+  --gradient-warm: linear-gradient(135deg, #e63946, #ff6b6b);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+body { background: #fffbf5; }
+body::before {
+  background: radial-gradient(circle at top left, rgba(230, 57, 70, 0.04), transparent 50%);
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #faf6f0;
+  --sidebar-bg: linear-gradient(180deg, #1a1311 0%, #2d2420 100%);
+  --content-bg: #fffbf5;
+  --accent: #e63946;
+  --accent-end: #ff6b6b;
+  --accent-cool: #457b9d;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}

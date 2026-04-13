@@ -1,0 +1,45 @@
+/* Theme: Retro Digital
+ * 스타일: 90년대/Y2K 레트로 + 모던 퓨전
+ * 참고: Clerk, Deno, Bun, Val Town
+ * 폰트: Space Mono + IBM Plex Sans KR
+ */
+
+/* === Landing === */
+:root {
+  --bg-base: #fffff5;
+  --text-primary: #1c1917;
+  --text-secondary: rgba(28, 25, 23, 0.65);
+  --text-muted: rgba(28, 25, 23, 0.45);
+  --accent-warm: #16a34a;
+  --accent-warm-end: #7c3aed;
+  --accent-cool: #fde047;
+  --surface: #fefce8;
+  --surface-hover: #fef9c3;
+  --border: #d6d3d1;
+  --border-light: #a8a29e;
+  --glass-bg: rgba(255, 255, 245, 0.92);
+  --radius-lg: 4px;
+  --radius-md: 4px;
+  --radius-sm: 2px;
+  --radius-pill: 4px;
+  --shadow-card: 2px 2px 0px #d6d3d1;
+  --gradient-warm: linear-gradient(135deg, #16a34a, #7c3aed);
+  font-family: "Space Mono", "IBM Plex Sans KR", monospace;
+}
+
+body { background: #fffff5; }
+body::before {
+  background: radial-gradient(circle, #d6d3d1 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* === Admin === */
+:root {
+  --admin-bg: #fefce8;
+  --sidebar-bg: linear-gradient(180deg, #1c1917 0%, #292524 100%);
+  --content-bg: #fffff5;
+  --accent: #16a34a;
+  --accent-end: #7c3aed;
+  --accent-cool: #fde047;
+  font-family: "Space Mono", "IBM Plex Sans KR", monospace;
+}

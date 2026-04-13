@@ -1,0 +1,41 @@
+/* Theme: Dopamine
+ * 스타일: 고채도 도파민 컬러, 에너지 넘침
+ * 참고: Figma, Miro, 크리에이티브 도구
+ * 폰트: Space Grotesk + Noto Sans KR
+ */
+:root {
+  --bg-base: #fffef5;
+  --text-primary: #1a1a2e;
+  --text-secondary: rgba(26, 26, 46, 0.65);
+  --text-muted: rgba(26, 26, 46, 0.4);
+  --accent-warm: #ff6b35;
+  --accent-warm-end: #ff2975;
+  --accent-cool: #00d2ff;
+  --surface: #ffffff;
+  --surface-hover: #fff8f0;
+  --border: #ffe0cc;
+  --border-light: #ffd1b3;
+  --glass-bg: rgba(255, 254, 245, 0.95);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 8px 24px rgba(255, 107, 53, 0.12);
+  --gradient-warm: linear-gradient(135deg, #ff6b35, #ff2975, #00d2ff);
+  font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
+}
+body { background: #fffef5; }
+body::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(0, 210, 255, 0.06), transparent 40%);
+}
+:root {
+  --admin-bg: #fff8f0;
+  --sidebar-bg: linear-gradient(180deg, #1a1a2e 0%, #2d2b55 100%);
+  --content-bg: #fffef5;
+  --accent: #ff6b35;
+  --accent-end: #ff2975;
+  --accent-cool: #00d2ff;
+  font-family: "Space Grotesk", "Noto Sans KR", sans-serif;
+}

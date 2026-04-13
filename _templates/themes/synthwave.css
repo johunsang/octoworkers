@@ -1,0 +1,41 @@
+/* Theme: Synthwave
+ * 스타일: 80년대 신스웨이브, 네온 핑크/퍼플
+ * 참고: Synthwave 미학, 레트로 게이밍
+ * 폰트: Orbitron (제목) + Inter (본문) + Noto Sans KR
+ */
+:root {
+  --bg-base: #0f0e17;
+  --text-primary: #fffffe;
+  --text-secondary: rgba(255, 255, 254, 0.7);
+  --text-muted: rgba(255, 255, 254, 0.4);
+  --accent-warm: #ff2975;
+  --accent-warm-end: #f222ff;
+  --accent-cool: #01cdfe;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 41, 117, 0.2);
+  --border-light: rgba(255, 41, 117, 0.3);
+  --glass-bg: rgba(15, 14, 23, 0.85);
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 24px rgba(255, 41, 117, 0.15), 0 0 40px rgba(242, 34, 255, 0.08);
+  --gradient-warm: linear-gradient(135deg, #ff2975, #f222ff);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+body { background: #0f0e17; }
+body::before {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255, 41, 117, 0.15), transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(1, 205, 254, 0.1), transparent 50%);
+}
+:root {
+  --admin-bg: #0a0914;
+  --sidebar-bg: linear-gradient(180deg, #1a0a2e 0%, #0f0e17 100%);
+  --content-bg: #0f0e17;
+  --accent: #ff2975;
+  --accent-end: #f222ff;
+  --accent-cool: #01cdfe;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
